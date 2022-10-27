@@ -129,7 +129,7 @@ class service implements Serializable{
     }
 }
 
-public class newcompany {
+public class company {
     public static void main(String[] args) {
         //*************
         // ARRAY OF OBJECTS OF ALL CLASSES ,THESE DO NOT SAVE DATA,THESE ARE JUST TO PREVENT SIMILAR NAMES OF OBJECTS,ALL DATA IS STORED IN FILES
@@ -211,11 +211,11 @@ public class newcompany {
                                             "D:\\employeesData\\SoftwareDev_Encoded.txt");
                                     AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
 
-                                    ArrayList<design> objectsList = new ArrayList<>();
+                                    ArrayList<softwareDev> objectsList = new ArrayList<>();
                                     boolean co = true;
                                     try {
                                         while (co) {
-                                            design obj = ((design) input.readObject());
+                                            softwareDev obj = ((softwareDev) input.readObject());
                                             if (obj != null) {
                                                 objectsList.add(obj);
                                             } else {
@@ -238,11 +238,11 @@ public class newcompany {
                                             "D:\\employeesData\\Research_Encoded.txt");
                                     AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
 
-                                    ArrayList<design> objectsList = new ArrayList<>();
+                                    ArrayList<Research> objectsList = new ArrayList<>();
                                     boolean co = true;
                                     try {
                                         while (co) {
-                                            design obj = ((design) input.readObject());
+                                            Research obj = ((Research) input.readObject());
                                             if (obj != null) {
                                                 objectsList.add(obj);
                                             } else {
@@ -264,11 +264,11 @@ public class newcompany {
                                     FileInputStream fis = new FileInputStream("D:\\employeesData\\HR_Encoded.txt");
                                     AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
 
-                                    ArrayList<design> objectsList = new ArrayList<>();
+                                    ArrayList<HR> objectsList = new ArrayList<>();
                                     boolean co = true;
                                     try {
                                         while (co) {
-                                            design obj = ((design) input.readObject());
+                                            HR obj = ((HR) input.readObject());
                                             if (obj != null) {
                                                 objectsList.add(obj);
                                             } else {
@@ -291,11 +291,11 @@ public class newcompany {
                                             "D:\\employeesData\\ProductManagement_Encoded.txt");
                                     AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
 
-                                    ArrayList<design> objectsList = new ArrayList<>();
+                                    ArrayList<PdtManagement> objectsList = new ArrayList<>();
                                     boolean co = true;
                                     try {
                                         while (co) {
-                                            design obj = ((design) input.readObject());
+                                            PdtManagement obj = ((PdtManagement) input.readObject());
                                             if (obj != null) {
                                                 objectsList.add(obj);
                                             } else {
@@ -318,11 +318,11 @@ public class newcompany {
                                             "D:\\employeesData\\Marketing_Encoded.txt");
                                     AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
 
-                                    ArrayList<design> objectsList = new ArrayList<>();
+                                    ArrayList<marketing> objectsList = new ArrayList<>();
                                     boolean co = true;
                                     try {
                                         while (co) {
-                                            design obj = ((design) input.readObject());
+                                            marketing obj = ((marketing) input.readObject());
                                             if (obj != null) {
                                                 objectsList.add(obj);
                                             } else {
@@ -672,7 +672,7 @@ public class newcompany {
                                                 try {
                                                     FileOutputStream fout = new FileOutputStream(
                                                             "D:\\employeesData\\SoftwareDev_Encoded.txt", true);
-                                                    ObjectOutputStream out = new ObjectOutputStream(fout);
+                                                    AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
                                                     out.writeObject(softwareDevArr[softwareDevCount]);
                                                     out.flush();
                                                     out.close();
@@ -734,7 +734,7 @@ public class newcompany {
                                                 try {
                                                     FileOutputStream fout = new FileOutputStream(
                                                             "D:\\employeesData\\Research_Encoded.txt", true);
-                                                    ObjectOutputStream out = new ObjectOutputStream(fout);
+                                                    AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
                                                     out.writeObject(ResearchArr[reaserchCount]);
                                                     out.flush();
                                                     out.close();
@@ -807,7 +807,7 @@ public class newcompany {
                                                 try {
                                                     FileOutputStream fout = new FileOutputStream(
                                                             "D:\\employeesData\\HR_Encoded.txt", true);
-                                                    ObjectOutputStream out = new ObjectOutputStream(fout);
+                                                    AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
                                                     out.writeObject(HRArr[hrCount]);
                                                     out.flush();
                                                     out.close();
@@ -871,7 +871,7 @@ public class newcompany {
                                                 try {
                                                     FileOutputStream fout = new FileOutputStream(
                                                             "D:\\employeesData\\ProductManagement_Encoded.txt", true);
-                                                    ObjectOutputStream out = new ObjectOutputStream(fout);
+                                                    AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
                                                     out.writeObject(PdtManagementArr[pdtmanageCount]);
                                                     out.flush();
                                                     out.close();
@@ -938,7 +938,7 @@ public class newcompany {
                                                 try {
                                                     FileOutputStream fout = new FileOutputStream(
                                                             "D:\\employeesData\\Marketing_Encoded.txt", true);
-                                                    ObjectOutputStream out = new ObjectOutputStream(fout);
+                                                    AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
                                                     out.writeObject(marketingArr[marketingCount]);
                                                     out.flush();
                                                     out.close();
