@@ -129,7 +129,7 @@ class service implements Serializable{
     }
 }
 
-public class company {
+public class company_alternate {
     public static void main(String[] args) {
         //*************
         // ARRAY OF OBJECTS OF ALL CLASSES ,THESE DO NOT SAVE DATA,THESE ARE JUST TO PREVENT SIMILAR NAMES OF OBJECTS,ALL DATA IS STORED IN FILES
@@ -148,7 +148,138 @@ public class company {
         int pdtmanageCount = 0;
         int marketingCount = 0;
         int keepAddingEmployee = 1;
+        ArrayList<design> designList = new ArrayList<>();
+        ArrayList<Research> researchList = new ArrayList<>();
+        ArrayList<softwareDev> softwareList = new ArrayList<>();
+        ArrayList<HR> hrList = new ArrayList<>();
+        ArrayList<PdtManagement> productList = new ArrayList<>();
+        ArrayList<marketing> marketingList = new ArrayList<>();
+        try{
+            FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\Design_Encoded.txt");
+                AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
+                     boolean co = true;
+                     try {
+                        while (co) {
+                     design obj = ((design) input.readObject());
+                          if (obj != null) {
+                             designList.add(obj);
+                        } else {
+                         co = false;
+
+                      }
+                 }
+                } catch (Exception g) {
+                    System.out.println("\n\n***DATA LOADED!***");
+                }
+             input.close();
+          }catch(Exception e){System.out.println(e);}
+
+          try{
+            FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\SoftwareDev_Encoded.txt");
+                AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
+                     boolean co = true;
+                     try {
+                        while (co) {
+                     softwareDev obj = ((softwareDev) input.readObject());
+                          if (obj != null) {
+                             softwareList.add(obj);
+                        } else {
+                         co = false;
+
+                      }
+                 }
+                } catch (Exception g) {
+            
+                }
+             input.close();
+          }catch(Exception e){System.out.println(e);}
+
+          try{
+            FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\Research_Encoded.txt");
+                AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
+                     boolean co = true;
+                     try {
+                        while (co) {
+                     Research obj = ((Research) input.readObject());
+                          if (obj != null) {
+                             researchList.add(obj);
+                        } else {
+                         co = false;
+
+                      }
+                 }
+                } catch (Exception g) {
+            
+                }
+             input.close();
+          }catch(Exception e){System.out.println(e);}
+
+          try{
+            FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\HR_Encoded.txt");
+                AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
+                     boolean co = true;
+                     try {
+                        while (co) {
+                     HR obj = ((HR) input.readObject());
+                          if (obj != null) {
+                             hrList.add(obj);
+                        } else {
+                         co = false;
+
+                      }
+                 }
+                } catch (Exception g) {
+            
+                }
+             input.close();
+          }catch(Exception e){System.out.println(e);}
+
+          try{
+            FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\ProductManagement_Encoded.txt");
+                AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
+                     boolean co = true;
+                     try {
+                        while (co) {
+                     PdtManagement obj = ((PdtManagement) input.readObject());
+                          if (obj != null) {
+                             productList.add(obj);
+                        } else {
+                         co = false;
+
+                      }
+                 }
+                } catch (Exception g) {
+            
+                }
+             input.close();
+          }catch(Exception e){System.out.println(e);}
+          try{
+            FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\Marketing_Encoded.txt");
+                AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
+                     boolean co = true;
+                     try {
+                        while (co) {
+                     marketing obj = ((marketing) input.readObject());
+                          if (obj != null) {
+                             marketingList.add(obj);
+                        } else {
+                         co = false;
+
+                      }
+                 }
+                } catch (Exception g) {
+            
+                }
+             input.close();
+          }catch(Exception e){System.out.println(e);}
+
+
+       
+                                                                
+                                                                                            
+           
         
+
         System.out.println("********COMPANY MANAEGMENT SYSTEM*******");
         System.out.println("\nPLEASE ENTER YOUR ADMIN ID TO GET ACCESS");
 
@@ -163,360 +294,155 @@ public class company {
         System.out.println("\nACCESS GRANTED,PRESS 1 TO CONTINUE");
         int cont, choice2, choice3, choice4, choice5, choice6, choice7, choice8;
         cont = sc.nextInt();
+        sc.nextLine();
         while (cont == 1) {
             System.out.println(
                     "\n1.Press 1 to get details of employees.\n2.Press 2 to modify data of employees.\n3.Press 3 for to manage record of customers and services.\n4.Press any other integer key to exit");
             choice2 = sc.nextInt();
+            sc.nextLine();
             switch (choice2) {
                 case 1:
                     System.out.println(
                             "\n1.Press 1 to get details of a specefic employee.\n2.Press 2 to get data of employees of specific department.");
                     choice4 = sc.nextInt();
+                    sc.nextLine();
                     switch (choice4) {
                         case 1:
                             System.out.println("\nEnter the employee code");
                             String code;
-                            sc.nextLine();
+                            
                             code = sc.nextLine();
+                            if(code.length()>5){System.out.println("\n**The entered code is of invalid format");}
+                            else{
                             if (code.charAt(1) == 'D' || code.charAt(1) == 'd') {
-                                String intValue = code.replaceAll("[^0-9]", "");
-                                try {
-                                    FileInputStream fis = new FileInputStream("D:\\employeesData\\Design_Encoded.txt");
-                                    AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                    ArrayList<design> objectsList = new ArrayList<>();
-                                    boolean co = true;
-                                    try {
-                                        while (co) {
-                                            design obj = ((design) input.readObject());
-                                            if (obj != null) {
-                                                objectsList.add(obj);
-                                            } else {
-                                                co = false;
-
-                                            }
-                                        }
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
-                                    input.close();
-                                    System.out.println(objectsList.get(Integer.valueOf(intValue)));
-                                } catch (Exception g) {
+                                // String intValue = code.replaceAll("[^0-9]", "");
+                                try{
+                                    String intValue=code.substring(2, 5);                                
+                                try{
+                                    Integer.valueOf(intValue);                                  
+                                    System.out.println(designList.get(Integer.valueOf(intValue)));
+                                } 
+                                catch(NumberFormatException e){
+                                    System.out.println("\n**The entered code is of invalid format");
+                                }
+                                catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
+                                catch (Exception g) {
                                     System.out.println(g);
                                 }
-                            } else if (code.charAt(1) == 'S' || code.charAt(1) == 's') {
-                                String intValue = code.replaceAll("[^0-9]", "");
+                            }catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+                            } 
+                            else if (code.charAt(1) == 'S' || code.charAt(1) == 's') {
+                                
+                                try{
+                                    String intValue=code.substring(2, 5);
                                 try {
-                                    FileInputStream fis = new FileInputStream(
-                                            "D:\\employeesData\\SoftwareDev_Encoded.txt");
-                                    AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                    ArrayList<softwareDev> objectsList = new ArrayList<>();
-                                    boolean co = true;
-                                    try {
-                                        while (co) {
-                                            softwareDev obj = ((softwareDev) input.readObject());
-                                            if (obj != null) {
-                                                objectsList.add(obj);
-                                            } else {
-                                                co = false;
-
-                                            }
-                                        }
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
-                                    input.close();
-                                    System.out.println(objectsList.get(Integer.valueOf(intValue)));
-                                } catch (Exception g) {
-                                    System.out.println(g);
+                                    
+                                    System.out.println(softwareList.get(Integer.valueOf(intValue)));
                                 }
-                            } else if (code.charAt(1) == 'R' || code.charAt(1) == 'r') {
-                                String intValue = code.replaceAll("[^0-9]", "");
+                                catch(NumberFormatException e){
+                                    System.out.println("\n**The entered code is in invalid format");
+                                }catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");} 
+                                catch (Exception g) {
+                                    System.out.println(g);}
+                                }catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+                                }
+                             else if (code.charAt(1) == 'R' || code.charAt(1) == 'r') {
+                                // String intValue = code.replaceAll("[^0-9]", "");
+                                try{
+                                    String intValue=code.substring(2, 5);
                                 try {
-                                    FileInputStream fis = new FileInputStream(
-                                            "D:\\employeesData\\Research_Encoded.txt");
-                                    AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                    ArrayList<Research> objectsList = new ArrayList<>();
-                                    boolean co = true;
-                                    try {
-                                        while (co) {
-                                            Research obj = ((Research) input.readObject());
-                                            if (obj != null) {
-                                                objectsList.add(obj);
-                                            } else {
-                                                co = false;
-
-                                            }
-                                        }
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
-                                    input.close();
-                                    System.out.println(objectsList.get(Integer.valueOf(intValue)));
-                                } catch (Exception g) {
-                                    System.out.println(g);
+                                    
+                                    System.out.println(researchList.get(Integer.valueOf(intValue)));
                                 }
-                            } else if (code.charAt(1) == 'H' || code.charAt(1) == 'h') {
-                                String intValue = code.replaceAll("[^0-9]", "");
+                                catch(NumberFormatException e){
+                                    System.out.println("\n**The entered code is in invalid format");
+                                } catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
+                                catch (Exception g) {
+                                    System.out.println(g);
+                                }}catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+                            } 
+                            else if (code.charAt(1) == 'H' || code.charAt(1) == 'h') {
+                                // String intValue = code.replaceAll("[^0-9]", "");
+                                try{
+                                    String intValue=code.substring(2, 5);
                                 try {
-                                    FileInputStream fis = new FileInputStream("D:\\employeesData\\HR_Encoded.txt");
-                                    AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                    ArrayList<HR> objectsList = new ArrayList<>();
-                                    boolean co = true;
-                                    try {
-                                        while (co) {
-                                            HR obj = ((HR) input.readObject());
-                                            if (obj != null) {
-                                                objectsList.add(obj);
-                                            } else {
-                                                co = false;
-
-                                            }
-                                        }
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
-                                    input.close();
-                                    System.out.println(objectsList.get(Integer.valueOf(intValue)));
-                                } catch (Exception g) {
-                                    System.out.println(g);
+                                    
+                                    System.out.println(hrList.get(Integer.valueOf(intValue)));
                                 }
+                                catch(NumberFormatException e){
+                                    System.out.println("\n**The entered code is in invalid format");
+                                }  catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
+                                catch (Exception g) {
+                                    System.out.println(g);
+                                }}catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
                             } else if (code.charAt(1) == 'P' || code.charAt(1) == 'p') {
-                                String intValue = code.replaceAll("[^0-9]", "");
+                                // String intValue = code.replaceAll("[^0-9]", "");
+                                try{
+                                    String intValue=code.substring(2, 5);
                                 try {
-                                    FileInputStream fis = new FileInputStream(
-                                            "D:\\employeesData\\ProductManagement_Encoded.txt");
-                                    AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                    ArrayList<PdtManagement> objectsList = new ArrayList<>();
-                                    boolean co = true;
-                                    try {
-                                        while (co) {
-                                            PdtManagement obj = ((PdtManagement) input.readObject());
-                                            if (obj != null) {
-                                                objectsList.add(obj);
-                                            } else {
-                                                co = false;
-
-                                            }
-                                        }
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
-                                    input.close();
-                                    System.out.println(objectsList.get(Integer.valueOf(intValue)));
-                                } catch (Exception g) {
-                                    System.out.println(g);
+                                    
+                                    System.out.println(productList.get(Integer.valueOf(intValue)));
                                 }
+                                catch(NumberFormatException e){
+                                    System.out.println("\n**The entered code is in invalid format");
+                                } catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
+                                catch (Exception g) {
+                                    System.out.println(g);
+                                }}catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
                             } else if (code.charAt(1) == 'M' || code.charAt(1) == 'm') {
-                                String intValue = code.replaceAll("[^0-9]", "");
+                                // String intValue = code.replaceAll("[^0-9]", "");
                                 try {
-                                    FileInputStream fis = new FileInputStream(
-                                            "D:\\employeesData\\Marketing_Encoded.txt");
-                                    AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                    ArrayList<marketing> objectsList = new ArrayList<>();
-                                    boolean co = true;
-                                    try {
-                                        while (co) {
-                                            marketing obj = ((marketing) input.readObject());
-                                            if (obj != null) {
-                                                objectsList.add(obj);
-                                            } else {
-                                                co = false;
-
-                                            }
-                                        }
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
-                                    input.close();
-                                    System.out.println(objectsList.get(Integer.valueOf(intValue)));
-                                } catch (Exception g) {
+                                    try{
+                                        String intValue=code.substring(2, 5);
+                                    ;
+                                    System.out.println(marketingList.get(Integer.valueOf(intValue)));
+                                } 
+                                catch(NumberFormatException e){
+                                    System.out.println("\n**The entered code is in invalid format");
+                                }catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
+                                catch (Exception g) {
                                     System.out.println(g);
-                                }
+                                }}catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
                             }
-
+                            else System.out.println("\n**The entered code is in invalid format");
+                        }
                             break;
 
                         case 2:
                             System.out.println(
                                     "\n1.Press 1 to get details of DESIGN TEAM.\n2.Press 2 to get details of Software Developers TEAM.\n3.Press 3 to get details of Reaserch Team.\n4.Press 4 to get details of HR TEAM.\n5.Press 5 to get details of Product TEAM.\n6.Press 6 to get details of Marketing TEAM");
                             choice3 = sc.nextInt();
+                            sc.nextLine();
+
+
                             switch (choice3) {
                                 case 1:
-                                    try {
-                                        FileInputStream fis = new FileInputStream(
-                                                "D:\\employeesData\\Design_Encoded.txt");
-                                        AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                        ArrayList<design> objectsList = new ArrayList<>();
-                                        boolean co = true;
-                                        try {
-                                            while (co) {
-                                                design obj = ((design) input.readObject());
-                                                if (obj != null) {
-                                                    objectsList.add(obj);
-                                                } else {
-                                                    co = false;
-
-                                                }
-                                            }
-                                        } catch (Exception g) {
-                                            System.out.println(g);
-                                        }
-                                        input.close();
-                                        System.out.println(objectsList);
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
+                                System.out.println(designList);
 
                                     break;
 
                                 case 2:
-                                    try {
-                                        FileInputStream fis = new FileInputStream(
-                                                "D:\\employeesData\\SoftwareDev_Encoded.txt");
-                                        AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                        ArrayList<softwareDev> objectsList = new ArrayList<>();
-                                        boolean co = true;
-                                        try {
-                                            while (co) {
-                                                softwareDev obj = ((softwareDev) input.readObject());
-                                                if (obj != null) {
-                                                    objectsList.add(obj);
-                                                } else {
-                                                    co = false;
-
-                                                }
-                                            }
-                                        } catch (Exception g) {
-                                            System.out.println(g);
-                                        }
-                                        input.close();
-                                        System.out.println(objectsList);
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
+                                    System.out.println(softwareList);
 
                                     break;
 
                                 case 3:
-                                    try {
-                                        FileInputStream fis = new FileInputStream(
-                                                "D:\\employeesData\\Research_Encoded.txt");
-                                        AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                        ArrayList<Research> objectsList = new ArrayList<>();
-                                        boolean co = true;
-                                        try {
-                                            while (co) {
-                                                Research obj = ((Research) input.readObject());
-                                                if (obj != null) {
-                                                    objectsList.add(obj);
-                                                } else {
-                                                    co = false;
-
-                                                }
-                                            }
-                                        } catch (Exception g) {
-                                            System.out.println(g);
-                                        }
-                                        input.close();
-                                        System.out.println(objectsList);
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
+                                    System.out.println(researchList);
 
                                     break;
 
                                 case 4:
-                                    try {
-                                        FileInputStream fis = new FileInputStream("D:\\employeesData\\HR_Encoded.txt");
-                                        AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                        ArrayList<HR> objectsList = new ArrayList<>();
-                                        boolean co = true;
-                                        try {
-                                            while (co) {
-                                                HR obj = ((HR) input.readObject());
-                                                if (obj != null) {
-                                                    objectsList.add(obj);
-                                                } else {
-                                                    co = false;
-
-                                                }
-                                            }
-                                        } catch (Exception g) {
-                                            System.out.println(g);
-                                        }
-                                        input.close();
-                                        System.out.println(objectsList);
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
+                                    System.out.println(hrList);
 
                                     break;
 
                                 case 5:
-                                    try {
-                                        FileInputStream fis = new FileInputStream(
-                                                "D:\\employeesData\\ProductManagement_Encoded.txt");
-                                        AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                        ArrayList<PdtManagement> objectsList = new ArrayList<>();
-                                        boolean co = true;
-                                        try {
-                                            while (co) {
-                                                PdtManagement obj = ((PdtManagement) input.readObject());
-                                                if (obj != null) {
-                                                    objectsList.add(obj);
-                                                } else {
-                                                    co = false;
-
-                                                }
-                                            }
-                                        } catch (Exception g) {
-                                            System.out.println(g);
-                                        }
-                                        input.close();
-                                        System.out.println(objectsList);
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
+                                    System.out.println(productList);
 
                                     break;
 
                                 case 6:
-                                    try {
-                                        FileInputStream fis = new FileInputStream(
-                                                "D:\\employeesData\\Marketing_Encoded.txt");
-                                        AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                        ArrayList<marketing> objectsList = new ArrayList<>();
-                                        boolean co = true;
-                                        try {
-                                            while (co) {
-                                                marketing obj = ((marketing) input.readObject());
-                                                if (obj != null) {
-                                                    objectsList.add(obj);
-                                                } else {
-                                                    co = false;
-
-                                                }
-                                            }
-                                        } catch (Exception g) {
-                                            System.out.println(g);
-                                        }
-                                        input.close();
-                                        System.out.println(objectsList);
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
+                                    System.out.println(marketingList);
 
                                     break;
 
@@ -529,24 +455,26 @@ public class company {
                     System.out.println(
                             "\n1.Press 1 to add a new employee to database.\n2.Press 2 to modify data of existing employees.");
                     choice3 = sc.nextInt();
+                    sc.nextLine();
                     switch (choice3) {
                         case 1:
                             while (keepAddingEmployee == 1) {
                                 System.out.println("\n1.Tech.\n2.Non Tech");
 
                                 choice4 = sc.nextInt();
+                                sc.nextLine();
                                 switch (choice4) {
                                     case 1:
                                         System.out.println("\n1.Design.\n2.Software Dev.\n3.Reasearch");
                                         choice5 = sc.nextInt();
+                                        sc.nextLine();
                                         switch (choice5) {
                                             case 1:
                                                 String name, designrole,empcode;
                                                 int age;
-                                                sc.nextLine();
-                                                System.out.println("\nEnter empcode");
                                                 
-                                                empcode=sc.nextLine();
+                                                if(designList.size()<10){empcode="ed00"+String.valueOf(designList.size());}
+                                                else{empcode="ed0" +String.valueOf(designList.size());}
                                                 
                                                 System.out.println("\n#Enter Name");
                                                 name = sc.nextLine();
@@ -559,74 +487,9 @@ public class company {
                                                 designArr[designCount] = new design(name, age, designrole,empcode);
                                                 employeeArr[employeeCount] = new Employee(name, age,empcode);
                                                
-                                                
-
-                                                // adding text data to design file using bufferWriter
-                                                try {
-                                                    BufferedWriter bfile = new BufferedWriter(
-                                                            new FileWriter("D:\\employeesData\\Design.txt", true));
-                                                    bfile.write("\nName-" + designArr[designCount].name + "\nAge-"
-                                                            + designArr[designCount].age + "\nDesign Role-"
-                                                            + designArr[designCount].DesignRole + "\n");
-                                                    bfile.close();
-                                                    // incrementing design employees counter
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
 
                                                 // serializing object to a text file using objectOutputStream
-                                                try {
-                                                    FileOutputStream fout = new FileOutputStream(
-                                                            "D:\\employeesData\\Design_Encoded.txt", true);
-                                                    AppendableObjectOutputStream out = new AppendableObjectOutputStream(
-                                                            fout);
-                                                    out.writeObject(designArr[designCount]);
-                                                    out.flush();
-                                                    out.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
-                                                try {
-                                                    FileInputStream fis = new FileInputStream(
-                                                            "D:\\employeesData\\Design_Encoded.txt");
-                                                    AppendableObjectInputStream input = new AppendableObjectInputStream(
-                                                            fis);
-
-                                                    ArrayList<design> objectsList = new ArrayList<>();
-                                                    boolean co = true;
-                                                    try {
-                                                        while (co) {
-                                                            design obj = ((design) input.readObject());
-                                                            if (obj != null) {
-                                                                objectsList.add(obj);
-                                                            } else {
-                                                                co = false;
-
-                                                            }
-                                                        }
-                                                    } catch (Exception g) {
-                                                        System.out.println(g);
-                                                    }
-                                                    input.close();
-                                                    System.out.println(objectsList);
-                                                } catch (Exception g) {
-                                                    System.out.println(g);
-                                                }
-
-                                                // adding text data to AllEmployess file using bufferWriter
-                                                try {
-                                                    BufferedWriter bfile = new BufferedWriter(new FileWriter(
-                                                            "D:\\employeesData\\AllEmployees.txt", true));
-                                                    bfile.write("\nName-" + employeeArr[employeeCount].name + "\nAge-"
-                                                            + employeeArr[employeeCount].age + "\nRole-Design\n");
-                                                    bfile.close();
-                                                    employeeCount++; // incrementing general employee counter
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
+                                                designList.add(designArr[designCount]);
                                                 // incrementing count of employees
                                                 designCount++;
                                                 employeeCount++;
@@ -637,10 +500,9 @@ public class company {
 
                                             case 2:
                                                 String softwareRole;
-                                                sc.nextLine();
-                                                System.out.println("\nEnter empcode");
                                                 
-                                                empcode=sc.nextLine();
+                                                if(softwareList.size()<10){empcode="ed00"+String.valueOf(softwareList.size());}
+                                                else{empcode="ed0" +String.valueOf(softwareList.size());}
                                                 
                                                 System.out.println("\n#Enter Name");
                                                 
@@ -655,44 +517,7 @@ public class company {
                                                         softwareRole,empcode);
                                                 employeeArr[employeeCount] = new Employee(name, age,empcode);
                                                 
-
-                                                try {
-                                                    BufferedWriter bfile = new BufferedWriter(
-                                                            new FileWriter("D:\\employeesData\\SoftwareDev.txt", true));
-                                                    bfile.write("\nName-" + softwareDevArr[softwareDevCount].name
-                                                            + "\nAge-" + softwareDevArr[softwareDevCount].age
-                                                            + "\nSoftwareDev Role-"
-                                                            + softwareDevArr[softwareDevCount].SoftwareRole + "\n");
-                                                    bfile.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
-                                                try {
-                                                    FileOutputStream fout = new FileOutputStream(
-                                                            "D:\\employeesData\\SoftwareDev_Encoded.txt", true);
-                                                    AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                                    out.writeObject(softwareDevArr[softwareDevCount]);
-                                                    out.flush();
-                                                    out.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
-                                                try {
-                                                    BufferedWriter bfile = new BufferedWriter(new FileWriter(
-                                                            "D:\\employeesData\\AllEmployees.txt", true));
-                                                    bfile.write("\nName-" + employeeArr[employeeCount].name + "\nAge-"
-                                                            + employeeArr[employeeCount].age
-                                                            + "\nRole-Software Developer\n");
-                                                    bfile.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
+                                                softwareList.add(softwareDevArr[softwareDevCount]);
                                                 softwareDevCount++;
                                                 employeeCount++;
                                                 System.out.println(
@@ -701,10 +526,9 @@ public class company {
 
                                             case 3:
                                                 String topic;
-                                                sc.nextLine();
-                                                System.out.println("\nEnter empcode");
                                                 
-                                                empcode=sc.nextLine();
+                                                if(researchList.size()<10){empcode="ed00"+String.valueOf(researchList.size());}
+                                                else{empcode="ed0" +String.valueOf(researchList.size());}
                                                 
                                                 System.out.println("\n#Enter Name");
                                                 
@@ -717,44 +541,8 @@ public class company {
 
                                                 ResearchArr[reaserchCount] = new Research(name, age, topic,empcode);
                                                 employeeArr[employeeCount] = new Employee(name, age,empcode);
-                                                
 
-                                                try {
-                                                    BufferedWriter bfile = new BufferedWriter(
-                                                            new FileWriter("D:\\employeesData\\Research.txt", true));
-                                                    bfile.write("\nName-" + ResearchArr[reaserchCount].name + "\nAge-"
-                                                            + ResearchArr[reaserchCount].age + "\nResearch Area-"
-                                                            + ResearchArr[reaserchCount].topic + "\n");
-                                                    bfile.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
-                                                try {
-                                                    FileOutputStream fout = new FileOutputStream(
-                                                            "D:\\employeesData\\Research_Encoded.txt", true);
-                                                    AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                                    out.writeObject(ResearchArr[reaserchCount]);
-                                                    out.flush();
-                                                    out.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
-                                                try {
-                                                    BufferedWriter bfile = new BufferedWriter(new FileWriter(
-                                                            "D:\\employeesData\\AllEmployees.txt", true));
-                                                    bfile.write("\nName-" + employeeArr[employeeCount].name + "\nAge-"
-                                                            + employeeArr[employeeCount].age
-                                                            + "\nRole-Researcher Developer\n");
-                                                    bfile.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
+                                                researchList.add(ResearchArr[reaserchCount]);
                                                 reaserchCount++;
                                                 employeeCount++;
 
@@ -770,14 +558,14 @@ public class company {
 
                                         System.out.println("\n1.HR.\n2.Pdt Management.\n3.Marketing");
                                         choice6 = sc.nextInt();
+                                        sc.nextLine();
                                         switch (choice6) {
                                             case 1:
                                                 String name, designation,empcode;
                                                 int age;
-                                                sc.nextLine();
-                                                System.out.println("\nEnter empcode");
                                                 
-                                                empcode=sc.nextLine();
+                                                if(hrList.size()<10){empcode="ed00"+String.valueOf(hrList.size());}
+                                                else{empcode="ed0" +String.valueOf(hrList.size());}
                                                 
                                                 System.out.println("\n#Enter Name");
                                                 
@@ -790,43 +578,8 @@ public class company {
 
                                                 HRArr[hrCount] = new HR(name, age, designation,empcode);
                                                 employeeArr[employeeCount] = new Employee(name, age,empcode);
-                                                
-
-                                                try {
-                                                    BufferedWriter bfile = new BufferedWriter(
-                                                            new FileWriter("D:\\employeesData\\HR.txt", true));
-                                                    bfile.write("\nName-" + HRArr[hrCount].name + "\nAge-"
-                                                            + HRArr[hrCount].age + "\nDesignation-"
-                                                            + HRArr[hrCount].Designation + "\n");
-                                                    bfile.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
-                                                try {
-                                                    FileOutputStream fout = new FileOutputStream(
-                                                            "D:\\employeesData\\HR_Encoded.txt", true);
-                                                    AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                                    out.writeObject(HRArr[hrCount]);
-                                                    out.flush();
-                                                    out.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
-                                                try {
-                                                    BufferedWriter bfile = new BufferedWriter(new FileWriter(
-                                                            "D:\\employeesData\\AllEmployees.txt", true));
-                                                    bfile.write("\nName-" + employeeArr[employeeCount].name + "\nAge-"
-                                                            + employeeArr[employeeCount].age + "\nRole-HR\n");
-                                                    bfile.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
+                                            
+                                                hrList.add(HRArr[hrCount]);
                                                 hrCount++;
                                                 employeeCount++;
                                                 System.out.println(
@@ -836,10 +589,9 @@ public class company {
 
                                             case 2:
                                                 String product;
-                                                sc.nextLine();
-                                                System.out.println("\nEnter empcode");
                                                 
-                                                empcode=sc.nextLine();
+                                                if(productList.size()<10){empcode="ed00"+String.valueOf(productList.size());}
+                                                else{empcode="ed0" +String.valueOf(productList.size());}
                                                 
                                                 System.out.println("\n#Enter Name");
                                                 
@@ -853,45 +605,7 @@ public class company {
                                                 PdtManagementArr[pdtmanageCount] = new PdtManagement(name, age,
                                                         product,empcode);
                                                 employeeArr[employeeCount] = new Employee(name, age,empcode);
-                                            
-
-                                                try {
-                                                    BufferedWriter bfile = new BufferedWriter(new FileWriter(
-                                                            "D:\\employeesData\\ProductManagement.txt", true));
-                                                    bfile.write("\nName-" + PdtManagementArr[pdtmanageCount].name
-                                                            + "\nAge-" + PdtManagementArr[pdtmanageCount].age
-                                                            + "\nProduct working on-"
-                                                            + PdtManagementArr[pdtmanageCount].product + "\n");
-                                                    bfile.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
-                                                try {
-                                                    FileOutputStream fout = new FileOutputStream(
-                                                            "D:\\employeesData\\ProductManagement_Encoded.txt", true);
-                                                    AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                                    out.writeObject(PdtManagementArr[pdtmanageCount]);
-                                                    out.flush();
-                                                    out.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
-                                                try {
-                                                    BufferedWriter bfile = new BufferedWriter(new FileWriter(
-                                                            "D:\\employeesData\\AllEmployees.txt", true));
-                                                    bfile.write("\nName-" + employeeArr[employeeCount].name + "\nAge-"
-                                                            + employeeArr[employeeCount].age
-                                                            + "\nRole-PdtManagement\n");
-                                                    bfile.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
+                                                productList.add(PdtManagementArr[pdtmanageCount]);
                                                 pdtmanageCount++;
                                                 employeeCount++;
 
@@ -902,10 +616,9 @@ public class company {
 
                                             case 3:
                                                 String medium, area;
-                                                sc.nextLine();
-                                                System.out.println("\nEnter empcode");
                                                 
-                                                empcode=sc.nextLine();
+                                                if(marketingList.size()<10){empcode="ed00"+String.valueOf(marketingList.size());}
+                                                else{empcode="ed0" +String.valueOf(marketingList.size());}
                                                 
                                                 System.out.println("\n#Enter Name");
                                                 
@@ -920,44 +633,7 @@ public class company {
 
                                                 marketingArr[marketingCount] = new marketing(name, age, medium, area,empcode);
                                                 employeeArr[employeeCount] = new Employee(name, age,empcode);
-                                            
-
-                                                try {
-                                                    BufferedWriter bfile = new BufferedWriter(
-                                                            new FileWriter("D:\\employeesData\\Marketing.txt", true));
-                                                    bfile.write("\nName-" + marketingArr[marketingCount].name + "\nAge-"
-                                                            + marketingArr[marketingCount].age + "\nMarketing Area-"
-                                                            + marketingArr[marketingCount].area + "\n" + "Medium-"
-                                                            + marketingArr[marketingCount].medium);
-                                                    bfile.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
-                                                try {
-                                                    FileOutputStream fout = new FileOutputStream(
-                                                            "D:\\employeesData\\Marketing_Encoded.txt", true);
-                                                    AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                                    out.writeObject(marketingArr[marketingCount]);
-                                                    out.flush();
-                                                    out.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
-                                                try {
-                                                    BufferedWriter bfile = new BufferedWriter(new FileWriter(
-                                                            "D:\\employeesData\\AllEmployees.txt", true));
-                                                    bfile.write("\nName-" + employeeArr[employeeCount].name + "\nAge-"
-                                                            + employeeArr[employeeCount].age + "\nRole-Marketing\n");
-                                                    bfile.close();
-
-                                                } catch (Exception e) {
-                                                    System.out.println(e);
-                                                }
-
+                                                marketingList.add(marketingArr[marketingCount]);
                                                 hrCount++;
                                                 employeeCount++;
                                                 System.out.println(
@@ -971,31 +647,21 @@ public class company {
                             break;
 
                         case 2:
-                            System.out.println("Enter the employee code who data you want to modiy");
-                            sc.nextLine();
+                            System.out.println("\nEnter the employee code whose data you want to modify");
+                            
                             String code = sc.nextLine();
+                            if(code.length()>5){System.out.println("\n**The entered code is of invalid format");}
+                            else{
                             if (code.charAt(1) == 'D' || code.charAt(1) == 'd') {
-                                String intValue = code.replaceAll("[^0-9]", "");
+                                // String intValue = code.replaceAll("[^0-9]", "");
+                                try{
+                                    String intValue=code.substring(2, 5);
                                 try {
-                                    FileInputStream fis = new FileInputStream("D:\\employeesData\\Design_Encoded.txt");
-                                    AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                    ArrayList<design> objectsList = new ArrayList<>();
-                                    boolean co = true;
-                                    try {
-                                        while (co) {
-                                            design obj = ((design) input.readObject());
-                                            if (obj != null) {
-                                                objectsList.add(obj);
-                                            } else {
-                                                co = false;
-
-                                            }
-                                        }
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
-                                    input.close();
+                                    
+                                    try{
+                                    if(designList.size()<=Integer.valueOf(intValue)){
+                                        throw new IndexOutOfBoundsException("\n**The entered code does not exist");
+                                    }                           
                                     System.out.println(
                                             "\nWhich field do you want to modify?\n1.Name\n2.Age\n3.Design Role");
                                     int field; 
@@ -1006,102 +672,39 @@ public class company {
                                         String newname;
                                         System.out.println("\nEnter new field");
                                         newname = sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).name = newname;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\Design_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                       
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\Design_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        designList.get(Integer.valueOf(intValue)).name = newname;
+                                        System.out.println("\nModified data of the employee\n"+designList.get(Integer.valueOf(intValue)));
                                     } else if (field == 2) {
                                         int newage;
                                         System.out.println("\nEnter new field");
                                         newage=sc.nextInt();
                                         sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).age=newage;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\Design_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                       
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\Design_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println( objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        designList.get(Integer.valueOf(intValue)).age=newage;
+                                        System.out.println("\nModified data of the employee\n"+designList.get(Integer.valueOf(intValue)));
                                     } else if (field == 3) {
                                         String newdesignRole;
                                         System.out.println("\nEnter new field");
                                         newdesignRole = sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).DesignRole = newdesignRole;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\Design_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                        
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\Design_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        designList.get(Integer.valueOf(intValue)).DesignRole = newdesignRole;
+                                        System.out.println("\nModified data of the employee\n"+designList.get(Integer.valueOf(intValue)));
                                     }
+                                }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
+                                }catch(NumberFormatException e){
+                                    System.out.println("\n**The entered code is in invalid format");
                                 } catch (Exception g) {
                                     System.out.println(g);
-                                }
+                                }}catch(Exception g){System.out.println("\n**The entered code is in invalid format");}
                             }
 
                             else if (code.charAt(1) == 'S' || code.charAt(1) == 's') {
-                                String intValue = code.replaceAll("[^0-9]", "");
+                                // String intValue = code.replaceAll("[^0-9]", "");
+                                try{
+                                    String intValue=code.substring(2, 5);
                                 try {
-                                    FileInputStream fis = new FileInputStream(
-                                            "D:\\employeesData\\SoftwareDev_Encoded.txt");
-                                    AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                    ArrayList<softwareDev> objectsList = new ArrayList<>();
-                                    boolean co = true;
-                                    try {
-                                        while (co) {
-                                            softwareDev obj = ((softwareDev) input.readObject());
-                                            if (obj != null) {
-                                                objectsList.add(obj);
-                                            } else {
-                                                co = false;
-
-                                            }
-                                        }
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
-                                    input.close();
+                                    try{
+                                        if(softwareList.size()<=Integer.valueOf(intValue)){
+                                            throw new IndexOutOfBoundsException("\n**The entered code does not exist");
+                                        } 
                                     System.out.println(
                                             "\nWhich field do you want to modify?\n1.Name\n2.Age\n3.SoftwareRole");
                                             int field; 
@@ -1113,101 +716,39 @@ public class company {
                                         System.out.println("\nEnter new field");
                                         
                                         newname = sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).name = newname;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\SoftwareDev_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                       
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\SoftwareDev_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        softwareList.get(Integer.valueOf(intValue)).name = newname;
+                                        System.out.println("\nModified data of the employee\n"+softwareList.get(Integer.valueOf(intValue)));
                                     } else if (field == 2) {
                                         int newage;
                                         System.out.println("\nEnter new field");
                                         newage = sc.nextInt();
                                         sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).age = newage;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\SoftwareDev_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                       
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\SoftwareDev_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        softwareList.get(Integer.valueOf(intValue)).age = newage;
+                                        System.out.println("\nModified data of the employee\n"+softwareList.get(Integer.valueOf(intValue)));
                                     } else if (field == 3) {
                                         String newSoftwarerole;
                                         
                                         newSoftwarerole = sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).SoftwareRole = newSoftwarerole;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\SoftwareDev_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                        
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\SoftwareDev_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        softwareList.get(Integer.valueOf(intValue)).SoftwareRole = newSoftwarerole;
+                                        System.out.println("\nModified data of the employee\n"+softwareList.get(Integer.valueOf(intValue)));
                                     }
-                                } catch (Exception g) {
-                                    System.out.println(g);
-                                }
-                            }
+                                }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
+                            }catch(NumberFormatException e){
+                                System.out.println("\n**The entered code is in invalid format");
+                            } catch (Exception g) {
+                                System.out.println(g);
+                            }}catch(Exception g){System.out.println("\n**The entered code is in invalid format");}
+                        }
 
                             else if (code.charAt(1) == 'R' || code.charAt(1) == 'r') {
-                                String intValue = code.replaceAll("[^0-9]", "");
+                                // String intValue = code.replaceAll("[^0-9]", "");
+                                try{
+                                    String intValue=code.substring(2, 5);
                                 try {
-                                    FileInputStream fis = new FileInputStream(
-                                            "D:\\employeesData\\Research_Encoded.txt");
-                                    AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                    ArrayList<Research> objectsList = new ArrayList<>();
-                                    boolean co = true;
-                                    try {
-                                        while (co) {
-                                            Research obj = ((Research) input.readObject());
-                                            if (obj != null) {
-                                                objectsList.add(obj);
-                                            } else {
-                                                co = false;
-
-                                            }
-                                        }
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
-                                    input.close();
+                                    try{
+                                        if(researchList.size()<=Integer.valueOf(intValue)){
+                                            throw new IndexOutOfBoundsException("\n**The entered code does not exist");
+                                        } 
                                     System.out.println(
                                             "\nWhich field do you want to modify?\n1.Name\n2.Age\n3.Design Role");
                                             int field; 
@@ -1219,101 +760,39 @@ public class company {
                                         String newname;
                                         
                                         newname = sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).name = newname;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\Research_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                        
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\Research_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        researchList.get(Integer.valueOf(intValue)).name = newname;
+                                        System.out.println("\nModified data of the employee\n"+researchList.get(Integer.valueOf(intValue)));
                                     } else if (field == 2) {
                                         int newage;
                                         
                                         newage = sc.nextInt();
                                         sc.nextLine();
                                         System.out.println("\nEnter new field");
-                                        objectsList.get(Integer.valueOf(intValue)).age = newage;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\Research_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                       
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\Research_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        researchList.get(Integer.valueOf(intValue)).age = newage;
+                                        System.out.println("\nModified data of the employee\n"+researchList.get(Integer.valueOf(intValue)));
                                     } else if (field == 3) {
                                         String newtopic;
                                         System.out.println("\nEnter new field");
                                         newtopic = sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).topic = newtopic;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\Research_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                        
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\Research_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        researchList.get(Integer.valueOf(intValue)).topic = newtopic;
+                                        System.out.println("\nModified data of the employee\n"+researchList.get(Integer.valueOf(intValue)));
                                     }
-                                } catch (Exception g) {
-                                    System.out.println(g);
-                                }
-                            }
-
+                                }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
+                            }catch(NumberFormatException e){
+                                System.out.println("\n**The entered code is in invalid format");
+                            } catch (Exception g) {
+                                System.out.println(g);
+                            }}catch(Exception g){System.out.println("\n**The entered code is in invalid format");}
+                        }
                             else if (code.charAt(1) == 'H' || code.charAt(1) == 'h') {
-                                String intValue = code.replaceAll("[^0-9]", "");
+                                // String intValue = code.replaceAll("[^0-9]", "");
+                                try{
+                                    String intValue=code.substring(2, 5);
                                 try {
-                                    FileInputStream fis = new FileInputStream("D:\\employeesData\\HR_Encoded.txt");
-                                    AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                    ArrayList<HR> objectsList = new ArrayList<>();
-                                    boolean co = true;
-                                    try {
-                                        while (co) {
-                                            HR obj = ((HR) input.readObject());
-                                            if (obj != null) {
-                                                objectsList.add(obj);
-                                            } else {
-                                                co = false;
-
-                                            }
-                                        }
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
-                                    input.close();
+                                    try{
+                                        if(hrList.size()<=Integer.valueOf(intValue)){
+                                            throw new IndexOutOfBoundsException("\n**The entered code does not exist");
+                                        } 
                                     System.out.println(
                                             "\nWhich field do you want to modify?\n1.Name\n2.Age\n3.Designation");
                                             int field; 
@@ -1324,101 +803,39 @@ public class company {
                                         String newname;
                                         System.out.println("\nEnter new field");
                                         newname = sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).name = newname;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\HR_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                        
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\HR_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        hrList.get(Integer.valueOf(intValue)).name = newname;
+                                        System.out.println("\nModified data of the employee\n"+hrList.get(Integer.valueOf(intValue)));
                                     } else if (field == 2) {
                                         int newage;
                                         System.out.println("\nEnter new field");
                                         newage = sc.nextInt();
                                         sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).age = newage;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\HR_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                    
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\HR_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 0; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        hrList.get(Integer.valueOf(intValue)).age = newage;
+                                        System.out.println("\nModified data of the employee\n"+hrList.get(Integer.valueOf(intValue)));
                                     } else if (field == 3) {
                                         String newDesignation;
                                         System.out.println("\nEnter new field");
                                         newDesignation = sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).Designation = newDesignation;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\HR_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                        
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\HR_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        hrList.get(Integer.valueOf(intValue)).Designation = newDesignation;
+                                        System.out.println("\nModified data of the employee\n"+hrList.get(Integer.valueOf(intValue)));
                                     }
-                                } catch (Exception g) {
-                                    System.out.println(g);
-                                }
-                            }
+                                }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
+                            }catch(NumberFormatException e){
+                                System.out.println("\n**The entered code is in invalid format");
+                            } catch (Exception g) {
+                                System.out.println(g);
+                            }}catch(Exception g){System.out.println("\n**The entered code is in invalid format");}
+                        }
 
                             else if (code.charAt(1) == 'P' || code.charAt(1) == 'p') {
-                                String intValue = code.replaceAll("[^0-9]", "");
+                                // String intValue = code.replaceAll("[^0-9]", "");
+                                try{
+                                    String intValue=code.substring(2, 5);
                                 try {
-                                    FileInputStream fis = new FileInputStream(
-                                            "D:\\employeesData\\ProductManagement_Encoded.txt");
-                                    AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                    ArrayList<PdtManagement> objectsList = new ArrayList<>();
-                                    boolean co = true;
-                                    try {
-                                        while (co) {
-                                            PdtManagement obj = ((PdtManagement) input.readObject());
-                                            if (obj != null) {
-                                                objectsList.add(obj);
-                                            } else {
-                                                co = false;
-
-                                            }
-                                        }
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
-                                    input.close();
+                                    try{
+                                        if(productList.size()<=Integer.valueOf(intValue)){
+                                            throw new IndexOutOfBoundsException("\n**The entered code does not exist");
+                                        } 
                                     System.out
                                             .println("\nWhich field do you want to modify?\n1.Name\n2.Age\n3.Product");
                                             int field; 
@@ -1429,101 +846,39 @@ public class company {
                                         String newname;
                                         System.out.println("\nEnter new field");
                                         newname = sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).name = newname;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\ProductManagement_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                        
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\ProductManagement_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        productList.get(Integer.valueOf(intValue)).name = newname;
+                                        System.out.println("\nModified data of the employee\n"+productList.get(Integer.valueOf(intValue)));
                                     } else if (field == 2) {
                                         int newage;
                                         System.out.println("\nEnter new field");
                                         newage = sc.nextInt();
                                         sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).age = newage;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\ProductManagement_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                       
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\ProductManagement_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        productList.get(Integer.valueOf(intValue)).age = newage;
+                                        System.out.println("\nModified data of the employee\n"+productList.get(Integer.valueOf(intValue)));
                                     } else if (field == 3) {
                                         String newproduct;
                                         System.out.println("\nEnter new field");
                                         newproduct = sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).product = newproduct;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\ProductManagement_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                        
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\ProductManagement_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        productList.get(Integer.valueOf(intValue)).product = newproduct;
+                                        System.out.println("\nModified data of the employee\n"+productList.get(Integer.valueOf(intValue)));
                                     }
+                               }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
+                                }catch(NumberFormatException e){
+                                    System.out.println("\n**The entered code is in invalid format");
                                 } catch (Exception g) {
                                     System.out.println(g);
-                                }
+                                }}catch(Exception g){System.out.println("\n**The entered code is in invalid format");}
                             }
 
                             else if (code.charAt(1) == 'M' || code.charAt(1) == 'm') {
-                                String intValue = code.replaceAll("[^0-9]", "");
+                                // String intValue = code.replaceAll("[^0-9]", "");
+                                try{
+                                    String intValue=code.substring(2, 5);
                                 try {
-                                    FileInputStream fis = new FileInputStream(
-                                            "D:\\employeesData\\Marketing_Encoded.txt");
-                                    AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                    ArrayList<marketing> objectsList = new ArrayList<>();
-                                    boolean co = true;
-                                    try {
-                                        while (co) {
-                                            marketing obj = ((marketing) input.readObject());
-                                            if (obj != null) {
-                                                objectsList.add(obj);
-                                            } else {
-                                                co = false;
-
-                                            }
-                                        }
-                                    } catch (Exception g) {
-                                        System.out.println(g);
-                                    }
-                                    input.close();
+                                    try{
+                                    if(marketingList.size()<=Integer.valueOf(intValue)){
+                                        throw new IndexOutOfBoundsException("\n**The entered code does not exist");
+                                    } 
                                     System.out.println(
                                             "\nWhich field do you want to modify?\n1.Name\n2.Age\n3.Medium.\n4.Area");
                                             int field; 
@@ -1534,101 +889,40 @@ public class company {
                                         String newname;
                                         System.out.println("\nEnter new field");
                                         newname = sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).name = newname;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\Marketing_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                       
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\Marketing_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        marketingList.get(Integer.valueOf(intValue)).name = newname;
+                                        System.out.println("\nModified data of the employee\n"+marketingList.get(Integer.valueOf(intValue)));
                                     } else if (field == 2) {
                                         int newage;
                                         System.out.println("\nEnter new field");
                                         newage = sc.nextInt();
                                         sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).age = newage;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\Marketing_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                        
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\Marketing_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        marketingList.get(Integer.valueOf(intValue)).age = newage;
+                                        System.out.println("\nModified data of the employee\n"+marketingList.get(Integer.valueOf(intValue)));
                                     } else if (field == 3) {
                                         String newmedium;
                                         System.out.println("\nEnter new field");
                                         newmedium = sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).medium = newmedium;
-                                        try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\Marketing_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                        
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\Marketing_Encoded.txt", true);
-                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        marketingList.get(Integer.valueOf(intValue)).medium = newmedium;
+                                        System.out.println("\nModified data of the employee\n"+marketingList.get(Integer.valueOf(intValue)));
                                     } else if (field == 4) {
                                         String newmedium;
                                         System.out.println("\nEnter new field");
                                         newmedium = sc.nextLine();
-                                        objectsList.get(Integer.valueOf(intValue)).area = newmedium;
-    try {FileOutputStream ffout = new FileOutputStream("D:\\employeesData\\Marketing_Encoded.txt", false);
-    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
-    oout.writeObject(objectsList.get(0));
-    oout.flush();
-    oout.close();
-                                            FileOutputStream fout = new FileOutputStream(
-                                                    "D:\\employeesData\\Marketing_Encoded.txt", true);
-                                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                                            for (int i = 1; i < objectsList.size(); i++) {
-                                                out.writeObject(objectsList.get(i));
-                                            }
-                                            out.flush();
-                                            out.close();
-                                            System.out.println("\nModified data of the employee\n"+objectsList.get(Integer.valueOf(intValue)));
-                                        } catch (Exception e) {
-                                            System.out.println(e);
-                                        }
+                                        marketingList.get(Integer.valueOf(intValue)).area = newmedium;
+                                        System.out.println("\nModified data of the employee\n"+marketingList.get(Integer.valueOf(intValue)));
                                     }
-                                } catch (Exception g) {
-                                    System.out.println(g);
-                                }
-                            }
+                                }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
+                            }catch(NumberFormatException e){
+                                System.out.println("\n**The entered code is in invalid format");
+                            } catch (Exception g) {
+                                System.out.println(g);
+                            }}catch(Exception g){System.out.println("\n**The entered code is in invalid format");}
+                            
+                        }
 
                     }
+                }
+                    
                     break;
                     case 3:
                     System.out.println("1.Press 1 to add a new Service Record.\n2.Press 2 to get details of previous records");
@@ -1734,8 +1028,116 @@ public class company {
 
             }
         }
-        System.out.println("********Session Ended********");
+        
+    try {FileOutputStream ffout = new FileOutputStream("D:\\employeesDataAlternate\\Design_Encoded.txt", false);
+    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
+    oout.writeObject(designList.get(0));
+    oout.flush();
+    oout.close();
+                                       
+FileOutputStream fout = new FileOutputStream("D:\\employeesDataAlternate\\Design_Encoded.txt", true);
+        AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
+    for (int i = 1; i < designList.size(); i++) {
+       out.writeObject(designList.get(i));
+   }
+    out.flush();
+    out.close();
+     } catch (Exception e) {
+    
+      }
 
-        sc.close();
+      try {FileOutputStream ffout = new FileOutputStream("D:\\employeesDataAlternate\\SoftwareDev_Encoded.txt", false);
+    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
+    oout.writeObject(softwareList.get(0));
+    oout.flush();
+    oout.close();
+                                       
+FileOutputStream fout = new FileOutputStream("D:\\employeesDataAlternate\\SoftwareDev_Encoded.txt", true);
+        AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
+    for (int i = 1; i < softwareList.size(); i++) {
+       out.writeObject(softwareList.get(i));
+   }
+    out.flush();
+    out.close();
+     } catch (Exception e) {
+    
+      }
+
+      try {FileOutputStream ffout = new FileOutputStream("D:\\employeesDataAlternate\\Research_Encoded.txt", false);
+    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
+    oout.writeObject(researchList.get(0));
+    oout.flush();
+    oout.close();
+                                       
+FileOutputStream fout = new FileOutputStream("D:\\employeesDataAlternate\\Research_Encoded.txt", true);
+        AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
+    for (int i = 1; i < researchList.size(); i++) {
+       out.writeObject(researchList.get(i));
+   }
+    out.flush();
+    out.close();
+     } catch (Exception e) {
+    
+      }
+
+      try {FileOutputStream ffout = new FileOutputStream("D:\\employeesDataAlternate\\HR_Encoded.txt", false);
+    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
+    oout.writeObject(hrList.get(0));
+    oout.flush();
+    oout.close();
+                                       
+FileOutputStream fout = new FileOutputStream("D:\\employeesDataAlternate\\HR_Encoded.txt", true);
+        AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
+    for (int i = 1; i < hrList.size(); i++) {
+       out.writeObject(hrList.get(i));
+   }
+    out.flush();
+    out.close();
+     } catch (Exception e) {
+    
+      }
+
+      try {FileOutputStream ffout = new FileOutputStream("D:\\employeesDataAlternate\\Product_Encoded.txt", false);
+    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
+    oout.writeObject(productList.get(0));
+    oout.flush();
+    oout.close();
+                                       
+FileOutputStream fout = new FileOutputStream("D:\\employeesDataAlternate\\Product_Encoded.txt", true);
+        AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
+    for (int i = 1; i < productList.size(); i++) {
+       out.writeObject(productList.get(i));
+   }
+    out.flush();
+    out.close();
+     } catch (Exception e) {
+    
+      }
+
+      try {FileOutputStream ffout = new FileOutputStream("D:\\employeesDataAlternate\\Marketing_Encoded.txt", false);
+    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
+    oout.writeObject(marketingList.get(0));
+    oout.flush();
+    oout.close();
+                                       
+FileOutputStream fout = new FileOutputStream("D:\\employeesDataAlternate\\Marketing_Encoded.txt", true);
+        AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
+    for (int i = 1; i < marketingList.size(); i++) {
+       out.writeObject(marketingList.get(i));
+   }
+    out.flush();
+    out.close();
+     } catch (Exception e) {
+    
+      }
+
+
+
+
+
+
+ System.out.println("********Session Ended********");
+
+ sc.close();
     }
 }
