@@ -133,8 +133,8 @@ class softwareDev extends Employee {
     }
     public void addNewEmployees(ArrayList<softwareDev> employeeList ,String name,int age,String softwareRole){
         String empcode;                                               
-        if(employeeList.size()<10){empcode="ed00"+String.valueOf(employeeList.size());}
-        else{empcode="ed0" +String.valueOf(employeeList.size());}                                                   
+        if(employeeList.size()<10){empcode="es00"+String.valueOf(employeeList.size());}
+        else{empcode="es0" +String.valueOf(employeeList.size());}                                                   
         softwareDev newDesignEmployee = new softwareDev(name, age, softwareRole,empcode);
         employeeList.add(newDesignEmployee);
 }
@@ -195,8 +195,8 @@ class Research extends Employee {
     }
     public void addNewEmployees(ArrayList<Research> employeeList ,String name,int age,String topic){
         String empcode;                                               
-        if(employeeList.size()<10){empcode="ed00"+String.valueOf(employeeList.size());}
-        else{empcode="ed0" +String.valueOf(employeeList.size());}                                                   
+        if(employeeList.size()<10){empcode="er00"+String.valueOf(employeeList.size());}
+        else{empcode="er0" +String.valueOf(employeeList.size());}                                                   
         Research newDesignEmployee = new Research(name, age, topic,empcode);
         employeeList.add(newDesignEmployee);
 }
@@ -258,8 +258,8 @@ class HR extends Employee {
     }
     public void addNewEmployees(ArrayList<HR> employeeList ,String name,int age,String designation){
         String empcode;                                               
-        if(employeeList.size()<10){empcode="ed00"+String.valueOf(employeeList.size());}
-        else{empcode="ed0" +String.valueOf(employeeList.size());}                                                   
+        if(employeeList.size()<10){empcode="eh00"+String.valueOf(employeeList.size());}
+        else{empcode="eh0" +String.valueOf(employeeList.size());}                                                   
         HR newDesignEmployee = new HR(name, age, designation,empcode);
         employeeList.add(newDesignEmployee);
 }
@@ -319,8 +319,8 @@ class PdtManagement extends Employee {
     }
     public void addNewEmployees(ArrayList<PdtManagement> employeeList ,String name,int age,String product){
         String empcode;                                               
-        if(employeeList.size()<10){empcode="ed00"+String.valueOf(employeeList.size());}
-        else{empcode="ed0" +String.valueOf(employeeList.size());}                                                   
+        if(employeeList.size()<10){empcode="ep00"+String.valueOf(employeeList.size());}
+        else{empcode="ep0" +String.valueOf(employeeList.size());}                                                   
         PdtManagement newDesignEmployee = new PdtManagement(name, age, product,empcode);
         employeeList.add(newDesignEmployee);
 }   
@@ -383,8 +383,8 @@ class marketing extends Employee {
     }
     public void addNewEmployees(ArrayList<marketing> employeeList ,String name,int age,String medium,String area){
         String empcode;                                               
-        if(employeeList.size()<10){empcode="ed00"+String.valueOf(employeeList.size());}
-        else{empcode="ed0" +String.valueOf(employeeList.size());}                                                   
+        if(employeeList.size()<10){empcode="em00"+String.valueOf(employeeList.size());}
+        else{empcode="em0" +String.valueOf(employeeList.size());}                                                   
         marketing newDesignEmployee = new marketing(name, age, medium,area,empcode);
         employeeList.add(newDesignEmployee);
 }
@@ -463,7 +463,7 @@ class service  implements Serializable{
 
 public class company_alternate {
     public static void main(String[] args) {
-        int keepAddingEmployee = 1;
+        int keepAddingEmployee = 1;      
         ArrayList<design> designList = new ArrayList<>();
         ArrayList<Research> researchList = new ArrayList<>();
         ArrayList<softwareDev> softwareList = new ArrayList<>();
@@ -921,8 +921,8 @@ public class company_alternate {
                                             System.out.println("\nChoose field");                                   
                                             field = sc.nextInt();
                                             sc.nextLine();
-                                            design mod2=new design();
-                                    mod2.modifyEmployeeData(designList,field,intValue);
+                                            softwareDev mod2=new softwareDev();
+                                    mod2.modifyEmployeeData(softwareList,field,intValue);
                                     
                                 }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
                             }catch(NumberFormatException e){
@@ -947,8 +947,8 @@ public class company_alternate {
                                             System.out.println("\nChoose field");                                   
                                             field = sc.nextInt();
                                             sc.nextLine();
-                                            design mod3=new design();
-                                    mod3.modifyEmployeeData(designList,field,intValue);
+                                            Research mod3=new Research();
+                                    mod3.modifyEmployeeData(researchList,field,intValue);
                                     
                                 }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
                             }catch(NumberFormatException e){
@@ -972,8 +972,8 @@ public class company_alternate {
                                             System.out.println("\nChoose field");                                   
                                             field = sc.nextInt();
                                             sc.nextLine();
-                                            design mod4=new design();
-                                    mod4.modifyEmployeeData(designList,field,intValue);
+                                            HR mod4=new HR();
+                                    mod4.modifyEmployeeData(hrList,field,intValue);
                                     
                                 }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
                             }catch(NumberFormatException e){
@@ -998,8 +998,8 @@ public class company_alternate {
                                             System.out.println("\nChoose field");                                   
                                             field = sc.nextInt();
                                             sc.nextLine();
-                                            design mod5=new design();
-                                    mod5.modifyEmployeeData(designList,field,intValue);
+                                            PdtManagement mod5=new PdtManagement();
+                                    mod5.modifyEmployeeData(productList,field,intValue);
                                     
                                }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
                                 }catch(NumberFormatException e){
@@ -1024,8 +1024,8 @@ public class company_alternate {
                                             System.out.println("\nChoose field");                                   
                                             field = sc.nextInt();
                                             sc.nextLine();
-                                            design mod6=new design();
-                                    mod6.modifyEmployeeData(designList,field,intValue);
+                                            marketing mod6=new marketing();
+                                    mod6.modifyEmployeeData(marketingList,field,intValue);
                                     
                                 }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
                             }catch(NumberFormatException e){
@@ -1050,7 +1050,7 @@ public class company_alternate {
                     switch(choice7){                       
                         case 1:
                         service s=new service();
-                        String cid,enterprise;
+                        String enterprise;
                         String softwares="";
                         int billamount=0;
                         System.out.println("\n#Enter Enterprise Name");
