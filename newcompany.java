@@ -5,14 +5,14 @@ class Employee implements Serializable {
     String empcode;
     String name;
     int age;
-
+    public Employee(){};
     public Employee(String name, int age,String empcode) {
         this.name = name;
         this.age = age;
         this.empcode=empcode;
     }
-
 }
+
 
 class AppendableObjectOutputStream extends ObjectOutputStream {
 
@@ -41,6 +41,9 @@ class AppendableObjectInputStream extends ObjectInputStream {
 
 class design extends Employee {
     String DesignRole;
+    public design(){
+        super();
+    }
 
     public design(String name, int age, String DesignRole,String empcode) {
         super(name,age,empcode);
@@ -50,12 +53,61 @@ class design extends Employee {
     public String toString() {
         return ("\nName-" + this.name + "\nAge-" + this.age + "\nEmployee code-"+this.empcode+"\nDesign Role-" + this.DesignRole + "\n");
     }
+    public void getEmployeesData(ArrayList<design> employeeList,String code){
+        try{
+                    String intValue=code.substring(2, 5);                                
+                try{
+                    Integer.valueOf(intValue);                                  
+                    System.out.println(employeeList.get(Integer.valueOf(intValue)));
+                } 
+                catch(NumberFormatException e){
+                    System.out.println("\n**The entered code is of invalid format");
+                }
+                catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
+                catch (Exception g) {
+                    System.out.println(g);
+                }
+            }catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+    }
+    public void addNewEmployees(ArrayList<design> employeeList,String name,int age,String designrole){
+            String empcode;                                               
+            if(employeeList.size()<10){empcode="ed00"+String.valueOf(employeeList.size());}
+            else{empcode="ed0" +String.valueOf(employeeList.size());}                                                   
+            design newDesignEmployee = new design(name, age, designrole,empcode);
+            employeeList.add(newDesignEmployee);
+    }
+    public void modifyEmployeeData(ArrayList<design> employeeList,int field,String intValue){
+        Scanner sc=new Scanner(System.in);
+    if (field == 1) {
+        String newname;
+        System.out.println("\nEnter new field");
+        newname = sc.nextLine();
+        employeeList.get(Integer.valueOf(intValue)).name = newname;
+        System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    } else if (field == 2) {
+        int newage;
+        System.out.println("\nEnter new field");
+        newage=sc.nextInt();
+        sc.nextLine();
+        employeeList.get(Integer.valueOf(intValue)).age=newage;
+        System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    } else if (field == 3) {
+        String newdesignRole;
+        System.out.println("\nEnter new field");
+        newdesignRole = sc.nextLine();
+        employeeList.get(Integer.valueOf(intValue)).DesignRole = newdesignRole;
+        System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    }
+    
+}
 
 }
 
 class softwareDev extends Employee {
     String SoftwareRole;
-
+    public softwareDev(){
+        super();
+    }
     softwareDev(String name, int age, String SoftwareRole,String empcode) {
         super(name,age,empcode);
         this.SoftwareRole = SoftwareRole;
@@ -63,11 +115,61 @@ class softwareDev extends Employee {
     public String toString() {
         return ("\nName-" + this.name + "\nAge-" + this.age + "\nEmployee code-"+this.empcode+"\nSoftware Role-" + this.SoftwareRole + "\n");
     }
+    public void getEmployeesData(ArrayList<softwareDev> employeeList,String code){
+        try{
+                    String intValue=code.substring(2, 5);                                
+                try{
+                    Integer.valueOf(intValue);                                  
+                    System.out.println(employeeList.get(Integer.valueOf(intValue)));
+                } 
+                catch(NumberFormatException e){
+                    System.out.println("\n**The entered code is of invalid format");
+                }
+                catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
+                catch (Exception g) {
+                    System.out.println(g);
+                }
+            }catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+    }
+    public void addNewEmployees(ArrayList<softwareDev> employeeList ,String name,int age,String softwareRole){
+        String empcode;                                               
+        if(employeeList.size()<10){empcode="ed00"+String.valueOf(employeeList.size());}
+        else{empcode="ed0" +String.valueOf(employeeList.size());}                                                   
+        softwareDev newDesignEmployee = new softwareDev(name, age, softwareRole,empcode);
+        employeeList.add(newDesignEmployee);
+}
+public void modifyEmployeeData(ArrayList<softwareDev> employeeList,int field,String intValue){
+    Scanner sc=new Scanner(System.in);
+    if (field == 1) {
+    String newname;
+    System.out.println("\nEnter new field");
+        
+    newname = sc.nextLine();
+    employeeList.get(Integer.valueOf(intValue)).name = newname;
+    System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    } else if (field == 2) {
+    int newage;
+    System.out.println("\nEnter new field");
+    newage = sc.nextInt();
+    sc.nextLine();
+    employeeList.get(Integer.valueOf(intValue)).age = newage;
+    System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    } else if (field == 3) {
+    String newSoftwarerole;
+        
+    newSoftwarerole = sc.nextLine();
+    employeeList.get(Integer.valueOf(intValue)).SoftwareRole = newSoftwarerole;
+    System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    }
+
+}
 }
 
 class Research extends Employee {
     String topic;
-
+    public Research(){
+        super();
+    }
     Research(String name, int age, String topic,String empcode) {
         super(name,age,empcode);
         this.topic = topic;
@@ -75,12 +177,62 @@ class Research extends Employee {
     public String toString() {
         return ("\nName-" + this.name + "\nAge-" + this.age + "\nEmployee code-"+this.empcode+"\nTopic of Research" + this.topic + "\n");
     }
+    public void getEmployeesData(ArrayList<Research> employeeList,String code){
+        try{
+                    String intValue=code.substring(2, 5);                                
+                try{
+                    Integer.valueOf(intValue);                                  
+                    System.out.println(employeeList.get(Integer.valueOf(intValue)));
+                } 
+                catch(NumberFormatException e){
+                    System.out.println("\n**The entered code is of invalid format");
+                }
+                catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
+                catch (Exception g) {
+                    System.out.println(g);
+                }
+            }catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+    }
+    public void addNewEmployees(ArrayList<Research> employeeList ,String name,int age,String topic){
+        String empcode;                                               
+        if(employeeList.size()<10){empcode="ed00"+String.valueOf(employeeList.size());}
+        else{empcode="ed0" +String.valueOf(employeeList.size());}                                                   
+        Research newDesignEmployee = new Research(name, age, topic,empcode);
+        employeeList.add(newDesignEmployee);
+}
+public void modifyEmployeeData(ArrayList<Research> employeeList,int field,String intValue){
+    Scanner sc=new Scanner(System.in);
+    if (field == 1) {
+            System.out.println("\nEnter new field");
+            String newname;            
+            newname = sc.nextLine();
+            employeeList.get(Integer.valueOf(intValue)).name = newname;
+            System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+        } else if (field == 2) {
+            int newage;            
+            newage = sc.nextInt();
+            sc.nextLine();
+            System.out.println("\nEnter new field");
+            employeeList.get(Integer.valueOf(intValue)).age = newage;
+            System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+        } else if (field == 3) {
+            String newtopic;
+            System.out.println("\nEnter new field");
+            newtopic = sc.nextLine();
+            employeeList.get(Integer.valueOf(intValue)).topic = newtopic;
+            System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+        }
+
+}
+
 
 }
 
 class HR extends Employee {
     String Designation;
-
+    public HR(){
+        super();
+    }
     HR(String name, int age, String Designation,String empcode) {
         super(name,age,empcode);
         this.Designation = Designation;
@@ -88,11 +240,60 @@ class HR extends Employee {
     public String toString() {
         return ("\nName-" + this.name + "\nAge-" + this.age + "\nEmployee code-"+this.empcode+"\nDesignation-" + this.Designation + "\n");
     }
+    public void getEmployeesData(ArrayList<HR> employeeList,String code){
+        try{
+                    String intValue=code.substring(2, 5);                                
+                try{
+                    Integer.valueOf(intValue);                                  
+                    System.out.println(employeeList.get(Integer.valueOf(intValue)));
+                } 
+                catch(NumberFormatException e){
+                    System.out.println("\n**The entered code is of invalid format");
+                }
+                catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
+                catch (Exception g) {
+                    System.out.println(g);
+                }
+            }catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+    }
+    public void addNewEmployees(ArrayList<HR> employeeList ,String name,int age,String designation){
+        String empcode;                                               
+        if(employeeList.size()<10){empcode="ed00"+String.valueOf(employeeList.size());}
+        else{empcode="ed0" +String.valueOf(employeeList.size());}                                                   
+        HR newDesignEmployee = new HR(name, age, designation,empcode);
+        employeeList.add(newDesignEmployee);
+}
+public void modifyEmployeeData(ArrayList<HR> employeeList,int field,String intValue){
+    Scanner sc=new Scanner(System.in);
+    if (field == 1) {
+        String newname;
+        System.out.println("\nEnter new field");
+        newname = sc.nextLine();
+        employeeList.get(Integer.valueOf(intValue)).name = newname;
+        System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    } else if (field == 2) {
+        int newage;
+        System.out.println("\nEnter new field");
+        newage = sc.nextInt();
+        sc.nextLine();
+        employeeList.get(Integer.valueOf(intValue)).age = newage;
+        System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    } else if (field == 3) {
+        String newDesignation;
+        System.out.println("\nEnter new field");
+        newDesignation = sc.nextLine();
+        employeeList.get(Integer.valueOf(intValue)).Designation = newDesignation;
+        System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    }
+    
+}
 }
 
 class PdtManagement extends Employee {
     String product;
-
+    public PdtManagement(){
+        super();
+    }
     PdtManagement(String name, int age, String product,String empcode) {
         super(name,age,empcode);
         this.product = product;
@@ -100,12 +301,62 @@ class PdtManagement extends Employee {
     public String toString() {
         return ("\nName-" + this.name + "\nAge-" + this.age + "\nEmployee code-"+this.empcode+"\nProduct Managing-" + this.product + "\n");
     }
+    public void getEmployeesData(ArrayList<PdtManagement> employeeList,String code){
+        try{
+                    String intValue=code.substring(2, 5);                                
+                try{
+                    Integer.valueOf(intValue);                                  
+                    System.out.println(employeeList.get(Integer.valueOf(intValue)));
+                } 
+                catch(NumberFormatException e){
+                    System.out.println("\n**The entered code is of invalid format");
+                }
+                catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
+                catch (Exception g) {
+                    System.out.println(g);
+                }
+            }catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+    }
+    public void addNewEmployees(ArrayList<PdtManagement> employeeList ,String name,int age,String product){
+        String empcode;                                               
+        if(employeeList.size()<10){empcode="ed00"+String.valueOf(employeeList.size());}
+        else{empcode="ed0" +String.valueOf(employeeList.size());}                                                   
+        PdtManagement newDesignEmployee = new PdtManagement(name, age, product,empcode);
+        employeeList.add(newDesignEmployee);
+}   
+public void modifyEmployeeData(ArrayList<PdtManagement> employeeList,int field,String intValue){
+    Scanner sc=new Scanner(System.in);
+    if (field == 1) {
+        String newname;
+        System.out.println("\nEnter new field");
+        newname = sc.nextLine();
+        employeeList.get(Integer.valueOf(intValue)).name = newname;
+        System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    } else if (field == 2) {
+        int newage;
+        System.out.println("\nEnter new field");
+        newage = sc.nextInt();
+        sc.nextLine();
+        employeeList.get(Integer.valueOf(intValue)).age = newage;
+         System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    } else if (field == 3) {
+        String newproduct;
+    System.out.println("\nEnter new field");
+        newproduct = sc.nextLine();
+        employeeList.get(Integer.valueOf(intValue)).product = newproduct;
+        System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    }
+    
+
+}
 }
 
 class marketing extends Employee {
     String medium;
     String area;
-
+    public marketing(){
+        super();
+    }
     marketing(String name, int age, String medium, String area,String empcode) {
         super(name,age,empcode);
         this.medium = medium;
@@ -114,39 +365,104 @@ class marketing extends Employee {
     public String toString() {
         return ("\nName-" + this.name + "\nAge-" + this.age + "\nEmployee code-"+this.empcode+"\nMedium-" + this.medium + "\nArea covering-"+this.area);
     }
+    public void getEmployeesData(ArrayList<marketing> employeeList,String code){
+        try{
+                    String intValue=code.substring(2, 5);                                
+                try{
+                    Integer.valueOf(intValue);                                  
+                    System.out.println(employeeList.get(Integer.valueOf(intValue)));
+                } 
+                catch(NumberFormatException e){
+                    System.out.println("\n**The entered code is of invalid format");
+                }
+                catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
+                catch (Exception g) {
+                    System.out.println(g);
+                }
+            }catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+    }
+    public void addNewEmployees(ArrayList<marketing> employeeList ,String name,int age,String medium,String area){
+        String empcode;                                               
+        if(employeeList.size()<10){empcode="ed00"+String.valueOf(employeeList.size());}
+        else{empcode="ed0" +String.valueOf(employeeList.size());}                                                   
+        marketing newDesignEmployee = new marketing(name, age, medium,area,empcode);
+        employeeList.add(newDesignEmployee);
+}
+public void modifyEmployeeData(ArrayList<marketing> employeeList,int field,String intValue){
+    Scanner sc=new Scanner(System.in);
+    if (field == 1) {
+        String newname;
+        System.out.println("\nEnter new field");
+        newname = sc.nextLine();
+        employeeList.get(Integer.valueOf(intValue)).name = newname;
+        System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    } else if (field == 2) {
+        int newage;
+        System.out.println("\nEnter new field");
+        newage = sc.nextInt();
+        sc.nextLine();
+        employeeList.get(Integer.valueOf(intValue)).age = newage;
+        System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    } else if (field == 3) {
+        String newmedium;
+        System.out.println("\nEnter new field");
+        newmedium = sc.nextLine();
+        employeeList.get(Integer.valueOf(intValue)).medium = newmedium;
+        System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    } else if (field == 4) {
+        String newmedium;
+        System.out.println("\nEnter new field");
+        newmedium = sc.nextLine();
+        employeeList.get(Integer.valueOf(intValue)).area = newmedium;
+        System.out.println("\nModified data of the employee\n"+employeeList.get(Integer.valueOf(intValue)));
+    }
+
+    
 }
 
-class service implements Serializable{
+}
+
+class service  implements Serializable{
     String customerID;
     String Enterprise;
     String softwaresPurchased;
     int billAmount;
-    service(String customerID,String Enterprise,String softwarsPurchased,int billAmount){
+    public service(){};
+    public service(String customerID,String Enterprise,String softwarsPurchased,int billAmount){
         this.Enterprise=Enterprise;this.customerID=customerID;this.billAmount=billAmount;this.softwaresPurchased=softwarsPurchased;
     }
     public String toString(){
         return("\nCustomer ID-"+this.customerID+"\nEnterprise name-"+this.Enterprise+"\nSoftwares Purchased-"+this.softwaresPurchased+"\nBill Amount-"+this.billAmount);
     }
+    public void getBillData(ArrayList<service> serviceList,String code){
+        try{
+                    String intValue=code.substring(1, 4);                                
+                try{
+                    Integer.valueOf(intValue);                                  
+                    System.out.println(serviceList.get(Integer.valueOf(intValue)));
+                } 
+                catch(NumberFormatException e){
+                    System.out.println("\n**The entered id is of invalid format");
+                }
+                catch(IndexOutOfBoundsException h){System.out.println("\n**The entered id does not exist");}
+                catch (Exception g) {
+                    System.out.println(g);
+                }
+            }catch(Exception e){System.out.println("\n**The entered id is of invalid format");}
+    }
+
+    public void addNewBill(ArrayList<service> serviceList ,String Enterprise,String softwarsPurchased,int billAmount){
+        String cid;                                               
+        if(serviceList.size()<10){cid="c00"+String.valueOf(serviceList.size());}
+        else{cid="c0" +String.valueOf(serviceList.size());}                                                   
+        service newSericeBill = new service(cid, Enterprise, softwarsPurchased, billAmount);
+        serviceList.add(newSericeBill);
+}
+    
 }
 
 public class company_alternate {
     public static void main(String[] args) {
-        //*************
-        // ARRAY OF OBJECTS OF ALL CLASSES ,THESE DO NOT SAVE DATA,THESE ARE JUST TO PREVENT SIMILAR NAMES OF OBJECTS,ALL DATA IS STORED IN FILES
-        Employee employeeArr[] = new Employee[600];
-        design[] designArr = new design[100];
-        softwareDev[] softwareDevArr = new softwareDev[100];
-        Research[] ResearchArr = new Research[100];
-        HR[] HRArr = new HR[100];
-        PdtManagement[] PdtManagementArr = new PdtManagement[100];
-        marketing[] marketingArr = new marketing[100];
-        int employeeCount = 0;
-        int designCount = 0;
-        int softwareDevCount = 0;
-        int reaserchCount = 0;
-        int hrCount = 0;
-        int pdtmanageCount = 0;
-        int marketingCount = 0;
         int keepAddingEmployee = 1;
         ArrayList<design> designList = new ArrayList<>();
         ArrayList<Research> researchList = new ArrayList<>();
@@ -154,6 +470,7 @@ public class company_alternate {
         ArrayList<HR> hrList = new ArrayList<>();
         ArrayList<PdtManagement> productList = new ArrayList<>();
         ArrayList<marketing> marketingList = new ArrayList<>();
+        ArrayList<service> serviceList = new ArrayList<>();
         try{
             FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\Design_Encoded.txt");
                 AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
@@ -273,6 +590,24 @@ public class company_alternate {
              input.close();
           }catch(Exception e){System.out.println(e);}
 
+          try{
+            FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\CustomerRecord.txt");
+                AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
+                     boolean co = true;
+                     try {
+                        while (co) {
+                     service obj = ((service) input.readObject());
+                          if (obj != null) {
+                             serviceList.add(obj);
+                        } else {
+                         co = false;
+
+                      }
+                 }
+                } catch (Exception g) {
+                }
+             input.close();
+          }catch(Exception e){System.out.println(e);}
 
        
                                                                 
@@ -315,94 +650,32 @@ public class company_alternate {
                             if(code.length()>5){System.out.println("\n**The entered code is of invalid format");}
                             else{
                             if (code.charAt(1) == 'D' || code.charAt(1) == 'd') {
-                                // String intValue = code.replaceAll("[^0-9]", "");
-                                try{
-                                    String intValue=code.substring(2, 5);                                
-                                try{
-                                    Integer.valueOf(intValue);                                  
-                                    System.out.println(designList.get(Integer.valueOf(intValue)));
-                                } 
-                                catch(NumberFormatException e){
-                                    System.out.println("\n**The entered code is of invalid format");
-                                }
-                                catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
-                                catch (Exception g) {
-                                    System.out.println(g);
-                                }
-                            }catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+                                design use=new design();
+                                use.getEmployeesData(designList,code);
+                               
                             } 
                             else if (code.charAt(1) == 'S' || code.charAt(1) == 's') {
+                                softwareDev use=new softwareDev();
+                                use.getEmployeesData(softwareList,code);
                                 
-                                try{
-                                    String intValue=code.substring(2, 5);
-                                try {
-                                    
-                                    System.out.println(softwareList.get(Integer.valueOf(intValue)));
-                                }
-                                catch(NumberFormatException e){
-                                    System.out.println("\n**The entered code is in invalid format");
-                                }catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");} 
-                                catch (Exception g) {
-                                    System.out.println(g);}
-                                }catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
-                                }
+                                 }
                              else if (code.charAt(1) == 'R' || code.charAt(1) == 'r') {
-                                // String intValue = code.replaceAll("[^0-9]", "");
-                                try{
-                                    String intValue=code.substring(2, 5);
-                                try {
-                                    
-                                    System.out.println(researchList.get(Integer.valueOf(intValue)));
-                                }
-                                catch(NumberFormatException e){
-                                    System.out.println("\n**The entered code is in invalid format");
-                                } catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
-                                catch (Exception g) {
-                                    System.out.println(g);
-                                }}catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+                                Research use=new Research();
+                                use.getEmployeesData(researchList,code);
+                               
                             } 
                             else if (code.charAt(1) == 'H' || code.charAt(1) == 'h') {
-                                // String intValue = code.replaceAll("[^0-9]", "");
-                                try{
-                                    String intValue=code.substring(2, 5);
-                                try {
-                                    
-                                    System.out.println(hrList.get(Integer.valueOf(intValue)));
-                                }
-                                catch(NumberFormatException e){
-                                    System.out.println("\n**The entered code is in invalid format");
-                                }  catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
-                                catch (Exception g) {
-                                    System.out.println(g);
-                                }}catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+                                HR use=new HR();
+                                use.getEmployeesData(hrList,code);
+                                
                             } else if (code.charAt(1) == 'P' || code.charAt(1) == 'p') {
-                                // String intValue = code.replaceAll("[^0-9]", "");
-                                try{
-                                    String intValue=code.substring(2, 5);
-                                try {
-                                    
-                                    System.out.println(productList.get(Integer.valueOf(intValue)));
-                                }
-                                catch(NumberFormatException e){
-                                    System.out.println("\n**The entered code is in invalid format");
-                                } catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
-                                catch (Exception g) {
-                                    System.out.println(g);
-                                }}catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+                                PdtManagement use=new PdtManagement();
+                                use.getEmployeesData(productList,code);
+                                
                             } else if (code.charAt(1) == 'M' || code.charAt(1) == 'm') {
-                                // String intValue = code.replaceAll("[^0-9]", "");
-                                try {
-                                    try{
-                                        String intValue=code.substring(2, 5);
-                                    ;
-                                    System.out.println(marketingList.get(Integer.valueOf(intValue)));
-                                } 
-                                catch(NumberFormatException e){
-                                    System.out.println("\n**The entered code is in invalid format");
-                                }catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
-                                catch (Exception g) {
-                                    System.out.println(g);
-                                }}catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+                                marketing use=new marketing();
+                                use.getEmployeesData(marketingList,code);
+                               
                             }
                             else System.out.println("\n**The entered code is in invalid format");
                         }
@@ -470,12 +743,9 @@ public class company_alternate {
                                         sc.nextLine();
                                         switch (choice5) {
                                             case 1:
-                                                String name, designrole,empcode;
-                                                int age;
-                                                
-                                                if(designList.size()<10){empcode="ed00"+String.valueOf(designList.size());}
-                                                else{empcode="ed0" +String.valueOf(designList.size());}
-                                                
+                                                design use1=new design();
+                                                String name, designrole;
+                                                int age;                                                
                                                 System.out.println("\n#Enter Name");
                                                 name = sc.nextLine();
                                                 System.out.println("#Enter Age");
@@ -483,27 +753,16 @@ public class company_alternate {
                                                 sc.nextLine();
                                                 System.out.println("#Enter Design Role");
                                                 designrole = sc.nextLine();
-
-                                                designArr[designCount] = new design(name, age, designrole,empcode);
-                                                employeeArr[employeeCount] = new Employee(name, age,empcode);
-                                               
-
-                                                // serializing object to a text file using objectOutputStream
-                                                designList.add(designArr[designCount]);
-                                                // incrementing count of employees
-                                                designCount++;
-                                                employeeCount++;
-                                                // data adding completes here
+                                                use1.addNewEmployees(designList,name,age,designrole);
+                                             
                                                 System.out.println(
                                                         "\nSuccessfully added the data!!\nIf you want to add more employees,press 1,else press any other key");
                                                 break;
 
                                             case 2:
                                                 String softwareRole;
-                                                
-                                                if(softwareList.size()<10){empcode="ed00"+String.valueOf(softwareList.size());}
-                                                else{empcode="ed0" +String.valueOf(softwareList.size());}
-                                                
+                                                softwareDev use2=new softwareDev();
+                                                                                   
                                                 System.out.println("\n#Enter Name");
                                                 
                                                 name = sc.nextLine();
@@ -512,23 +771,16 @@ public class company_alternate {
                                                 sc.nextLine();
                                                 System.out.println("#Enter Software Role");
                                                 softwareRole = sc.nextLine();
-
-                                                softwareDevArr[softwareDevCount] = new softwareDev(name, age,
-                                                        softwareRole,empcode);
-                                                employeeArr[employeeCount] = new Employee(name, age,empcode);
+                                                use2.addNewEmployees(softwareList, name, age, softwareRole);
                                                 
-                                                softwareList.add(softwareDevArr[softwareDevCount]);
-                                                softwareDevCount++;
-                                                employeeCount++;
                                                 System.out.println(
                                                         "\nSuccessfully added the data!!\nIf you want to add more employees,press 1,else press any other key");
                                                 break;
 
                                             case 3:
                                                 String topic;
+                                                Research use3=new Research();
                                                 
-                                                if(researchList.size()<10){empcode="ed00"+String.valueOf(researchList.size());}
-                                                else{empcode="ed0" +String.valueOf(researchList.size());}
                                                 
                                                 System.out.println("\n#Enter Name");
                                                 
@@ -538,13 +790,8 @@ public class company_alternate {
                                                 sc.nextLine();
                                                 System.out.println("#Enter Topic Of Research");
                                                 topic = sc.nextLine();
-
-                                                ResearchArr[reaserchCount] = new Research(name, age, topic,empcode);
-                                                employeeArr[employeeCount] = new Employee(name, age,empcode);
-
-                                                researchList.add(ResearchArr[reaserchCount]);
-                                                reaserchCount++;
-                                                employeeCount++;
+                                                use3.addNewEmployees(researchList, name, age, topic);
+                                                
 
                                                 System.out.println(
                                                         "\nSuccessfully added the data!!\nIf you want to add more employees,press 1,else press any other key");
@@ -561,27 +808,20 @@ public class company_alternate {
                                         sc.nextLine();
                                         switch (choice6) {
                                             case 1:
-                                                String name, designation,empcode;
+                                                String name, designation;
                                                 int age;
+                                                HR use4=new HR();
                                                 
-                                                if(hrList.size()<10){empcode="ed00"+String.valueOf(hrList.size());}
-                                                else{empcode="ed0" +String.valueOf(hrList.size());}
                                                 
-                                                System.out.println("\n#Enter Name");
-                                                
+                                                System.out.println("\n#Enter Name");                                                
                                                 name = sc.nextLine();
                                                 System.out.println("#Enter Age");
                                                 age = sc.nextInt();
                                                 sc.nextLine();
                                                 System.out.println("#Enter Designation in HR Team");
                                                 designation = sc.nextLine();
-
-                                                HRArr[hrCount] = new HR(name, age, designation,empcode);
-                                                employeeArr[employeeCount] = new Employee(name, age,empcode);
-                                            
-                                                hrList.add(HRArr[hrCount]);
-                                                hrCount++;
-                                                employeeCount++;
+                                                use4.addNewEmployees(hrList, name, age, designation);
+                                                
                                                 System.out.println(
                                                         "\nSuccessfully added the data!!\nIf you want to add more employees,press 1,else press any other key");
 
@@ -589,9 +829,7 @@ public class company_alternate {
 
                                             case 2:
                                                 String product;
-                                                
-                                                if(productList.size()<10){empcode="ed00"+String.valueOf(productList.size());}
-                                                else{empcode="ed0" +String.valueOf(productList.size());}
+                                                PdtManagement use5=new PdtManagement();
                                                 
                                                 System.out.println("\n#Enter Name");
                                                 
@@ -601,13 +839,8 @@ public class company_alternate {
                                                 sc.nextLine();
                                                 System.out.println("#Enter Product");
                                                 product = sc.nextLine();
-
-                                                PdtManagementArr[pdtmanageCount] = new PdtManagement(name, age,
-                                                        product,empcode);
-                                                employeeArr[employeeCount] = new Employee(name, age,empcode);
-                                                productList.add(PdtManagementArr[pdtmanageCount]);
-                                                pdtmanageCount++;
-                                                employeeCount++;
+                                                use5.addNewEmployees(productList, name,age, product);
+                                                
 
                                                 System.out.println(
                                                         "\nSuccessfully added the data!!\nIf you want to add more employees,press 1,else press any other key");
@@ -616,9 +849,7 @@ public class company_alternate {
 
                                             case 3:
                                                 String medium, area;
-                                                
-                                                if(marketingList.size()<10){empcode="ed00"+String.valueOf(marketingList.size());}
-                                                else{empcode="ed0" +String.valueOf(marketingList.size());}
+                                                marketing use6=new marketing();
                                                 
                                                 System.out.println("\n#Enter Name");
                                                 
@@ -630,12 +861,8 @@ public class company_alternate {
                                                 medium = sc.nextLine();
                                                 System.out.println("#Enter Area of Marketing");
                                                 area = sc.nextLine();
-
-                                                marketingArr[marketingCount] = new marketing(name, age, medium, area,empcode);
-                                                employeeArr[employeeCount] = new Employee(name, age,empcode);
-                                                marketingList.add(marketingArr[marketingCount]);
-                                                hrCount++;
-                                                employeeCount++;
+                                                use6.addNewEmployees(marketingList, name, age, medium, area);
+                                                
                                                 System.out.println(
                                                         "\nSuccessfully added the data!!\nIf you want to add more employees,press 1,else press any other key");
                                                 break;
@@ -653,7 +880,7 @@ public class company_alternate {
                             if(code.length()>5){System.out.println("\n**The entered code is of invalid format");}
                             else{
                             if (code.charAt(1) == 'D' || code.charAt(1) == 'd') {
-                                // String intValue = code.replaceAll("[^0-9]", "");
+                             
                                 try{
                                     String intValue=code.substring(2, 5);
                                 try {
@@ -668,26 +895,9 @@ public class company_alternate {
                                     System.out.println("\nChoose field");                                   
                                     field = sc.nextInt();
                                     sc.nextLine();
-                                    if (field == 1) {
-                                        String newname;
-                                        System.out.println("\nEnter new field");
-                                        newname = sc.nextLine();
-                                        designList.get(Integer.valueOf(intValue)).name = newname;
-                                        System.out.println("\nModified data of the employee\n"+designList.get(Integer.valueOf(intValue)));
-                                    } else if (field == 2) {
-                                        int newage;
-                                        System.out.println("\nEnter new field");
-                                        newage=sc.nextInt();
-                                        sc.nextLine();
-                                        designList.get(Integer.valueOf(intValue)).age=newage;
-                                        System.out.println("\nModified data of the employee\n"+designList.get(Integer.valueOf(intValue)));
-                                    } else if (field == 3) {
-                                        String newdesignRole;
-                                        System.out.println("\nEnter new field");
-                                        newdesignRole = sc.nextLine();
-                                        designList.get(Integer.valueOf(intValue)).DesignRole = newdesignRole;
-                                        System.out.println("\nModified data of the employee\n"+designList.get(Integer.valueOf(intValue)));
-                                    }
+                                    design mod1=new design();
+                                    mod1.modifyEmployeeData(designList,field,intValue);
+                                    
                                 }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
                                 }catch(NumberFormatException e){
                                     System.out.println("\n**The entered code is in invalid format");
@@ -711,27 +921,9 @@ public class company_alternate {
                                             System.out.println("\nChoose field");                                   
                                             field = sc.nextInt();
                                             sc.nextLine();
-                                    if (field == 1) {
-                                        String newname;
-                                        System.out.println("\nEnter new field");
-                                        
-                                        newname = sc.nextLine();
-                                        softwareList.get(Integer.valueOf(intValue)).name = newname;
-                                        System.out.println("\nModified data of the employee\n"+softwareList.get(Integer.valueOf(intValue)));
-                                    } else if (field == 2) {
-                                        int newage;
-                                        System.out.println("\nEnter new field");
-                                        newage = sc.nextInt();
-                                        sc.nextLine();
-                                        softwareList.get(Integer.valueOf(intValue)).age = newage;
-                                        System.out.println("\nModified data of the employee\n"+softwareList.get(Integer.valueOf(intValue)));
-                                    } else if (field == 3) {
-                                        String newSoftwarerole;
-                                        
-                                        newSoftwarerole = sc.nextLine();
-                                        softwareList.get(Integer.valueOf(intValue)).SoftwareRole = newSoftwarerole;
-                                        System.out.println("\nModified data of the employee\n"+softwareList.get(Integer.valueOf(intValue)));
-                                    }
+                                            design mod2=new design();
+                                    mod2.modifyEmployeeData(designList,field,intValue);
+                                    
                                 }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
                             }catch(NumberFormatException e){
                                 System.out.println("\n**The entered code is in invalid format");
@@ -755,28 +947,9 @@ public class company_alternate {
                                             System.out.println("\nChoose field");                                   
                                             field = sc.nextInt();
                                             sc.nextLine();
-                                    if (field == 1) {
-                                        System.out.println("\nEnter new field");
-                                        String newname;
-                                        
-                                        newname = sc.nextLine();
-                                        researchList.get(Integer.valueOf(intValue)).name = newname;
-                                        System.out.println("\nModified data of the employee\n"+researchList.get(Integer.valueOf(intValue)));
-                                    } else if (field == 2) {
-                                        int newage;
-                                        
-                                        newage = sc.nextInt();
-                                        sc.nextLine();
-                                        System.out.println("\nEnter new field");
-                                        researchList.get(Integer.valueOf(intValue)).age = newage;
-                                        System.out.println("\nModified data of the employee\n"+researchList.get(Integer.valueOf(intValue)));
-                                    } else if (field == 3) {
-                                        String newtopic;
-                                        System.out.println("\nEnter new field");
-                                        newtopic = sc.nextLine();
-                                        researchList.get(Integer.valueOf(intValue)).topic = newtopic;
-                                        System.out.println("\nModified data of the employee\n"+researchList.get(Integer.valueOf(intValue)));
-                                    }
+                                            design mod3=new design();
+                                    mod3.modifyEmployeeData(designList,field,intValue);
+                                    
                                 }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
                             }catch(NumberFormatException e){
                                 System.out.println("\n**The entered code is in invalid format");
@@ -799,26 +972,9 @@ public class company_alternate {
                                             System.out.println("\nChoose field");                                   
                                             field = sc.nextInt();
                                             sc.nextLine();
-                                    if (field == 1) {
-                                        String newname;
-                                        System.out.println("\nEnter new field");
-                                        newname = sc.nextLine();
-                                        hrList.get(Integer.valueOf(intValue)).name = newname;
-                                        System.out.println("\nModified data of the employee\n"+hrList.get(Integer.valueOf(intValue)));
-                                    } else if (field == 2) {
-                                        int newage;
-                                        System.out.println("\nEnter new field");
-                                        newage = sc.nextInt();
-                                        sc.nextLine();
-                                        hrList.get(Integer.valueOf(intValue)).age = newage;
-                                        System.out.println("\nModified data of the employee\n"+hrList.get(Integer.valueOf(intValue)));
-                                    } else if (field == 3) {
-                                        String newDesignation;
-                                        System.out.println("\nEnter new field");
-                                        newDesignation = sc.nextLine();
-                                        hrList.get(Integer.valueOf(intValue)).Designation = newDesignation;
-                                        System.out.println("\nModified data of the employee\n"+hrList.get(Integer.valueOf(intValue)));
-                                    }
+                                            design mod4=new design();
+                                    mod4.modifyEmployeeData(designList,field,intValue);
+                                    
                                 }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
                             }catch(NumberFormatException e){
                                 System.out.println("\n**The entered code is in invalid format");
@@ -842,26 +998,9 @@ public class company_alternate {
                                             System.out.println("\nChoose field");                                   
                                             field = sc.nextInt();
                                             sc.nextLine();
-                                    if (field == 1) {
-                                        String newname;
-                                        System.out.println("\nEnter new field");
-                                        newname = sc.nextLine();
-                                        productList.get(Integer.valueOf(intValue)).name = newname;
-                                        System.out.println("\nModified data of the employee\n"+productList.get(Integer.valueOf(intValue)));
-                                    } else if (field == 2) {
-                                        int newage;
-                                        System.out.println("\nEnter new field");
-                                        newage = sc.nextInt();
-                                        sc.nextLine();
-                                        productList.get(Integer.valueOf(intValue)).age = newage;
-                                        System.out.println("\nModified data of the employee\n"+productList.get(Integer.valueOf(intValue)));
-                                    } else if (field == 3) {
-                                        String newproduct;
-                                        System.out.println("\nEnter new field");
-                                        newproduct = sc.nextLine();
-                                        productList.get(Integer.valueOf(intValue)).product = newproduct;
-                                        System.out.println("\nModified data of the employee\n"+productList.get(Integer.valueOf(intValue)));
-                                    }
+                                            design mod5=new design();
+                                    mod5.modifyEmployeeData(designList,field,intValue);
+                                    
                                }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
                                 }catch(NumberFormatException e){
                                     System.out.println("\n**The entered code is in invalid format");
@@ -885,47 +1024,21 @@ public class company_alternate {
                                             System.out.println("\nChoose field");                                   
                                             field = sc.nextInt();
                                             sc.nextLine();
-                                    if (field == 1) {
-                                        String newname;
-                                        System.out.println("\nEnter new field");
-                                        newname = sc.nextLine();
-                                        marketingList.get(Integer.valueOf(intValue)).name = newname;
-                                        System.out.println("\nModified data of the employee\n"+marketingList.get(Integer.valueOf(intValue)));
-                                    } else if (field == 2) {
-                                        int newage;
-                                        System.out.println("\nEnter new field");
-                                        newage = sc.nextInt();
-                                        sc.nextLine();
-                                        marketingList.get(Integer.valueOf(intValue)).age = newage;
-                                        System.out.println("\nModified data of the employee\n"+marketingList.get(Integer.valueOf(intValue)));
-                                    } else if (field == 3) {
-                                        String newmedium;
-                                        System.out.println("\nEnter new field");
-                                        newmedium = sc.nextLine();
-                                        marketingList.get(Integer.valueOf(intValue)).medium = newmedium;
-                                        System.out.println("\nModified data of the employee\n"+marketingList.get(Integer.valueOf(intValue)));
-                                    } else if (field == 4) {
-                                        String newmedium;
-                                        System.out.println("\nEnter new field");
-                                        newmedium = sc.nextLine();
-                                        marketingList.get(Integer.valueOf(intValue)).area = newmedium;
-                                        System.out.println("\nModified data of the employee\n"+marketingList.get(Integer.valueOf(intValue)));
-                                    }
+                                            design mod6=new design();
+                                    mod6.modifyEmployeeData(designList,field,intValue);
+                                    
                                 }catch(IndexOutOfBoundsException e){System.out.println("\n**The entered code does not exist");}
                             }catch(NumberFormatException e){
                                 System.out.println("\n**The entered code is in invalid format");
                             } catch (Exception g) {
                                 System.out.println(g);
-                            }}catch(Exception g){System.out.println("\n**The entered code is in invalid format");}
-                            
+                            }}catch(Exception g){System.out.println("\n**The entered code is in invalid format");}                            
                         }
-
                     }
-                }
-                    
+                }                    
                     break;
                     case 3:
-                    System.out.println("1.Press 1 to add a new Service Record.\n2.Press 2 to get details of previous records");
+                    System.out.println("\n1.Press 1 to add a new Service Record.\n2.Press 2 to get details of previous records.");
                     choice7=sc.nextInt();
                     sc.nextLine();
                         String p1="Account Manager Software,";
@@ -936,11 +1049,10 @@ public class company_alternate {
                         int b1=1000;int b2=2000;int b3=1500;int b4=4000;int b5=3000;
                     switch(choice7){                       
                         case 1:
+                        service s=new service();
                         String cid,enterprise;
                         String softwares="";
                         int billamount=0;
-                        System.out.println("\n#Enter CustomerID");
-                        cid=sc.nextLine();
                         System.out.println("\n#Enter Enterprise Name");
                         enterprise=sc.nextLine();
                         int keepAddingSoftware=1;
@@ -976,49 +1088,49 @@ public class company_alternate {
                         }
                         keepAddingSoftware=sc.nextInt();
                         sc.nextLine();
-                    }       
-                    service s=new service(cid, enterprise, softwares, billamount);
-                       
-                        try {
-    FileOutputStream fout = new FileOutputStream( "D:\\ServicesData\\SerivceRecord.txt", true);
-                            AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
-                            out.writeObject(s);
-                            out.flush();
-                            out.close();
-                        } catch(Exception e){System.out.println(e);}
+                    }                           
+                        
+                        System.out.println(softwares);
+                        s.addNewBill(serviceList, enterprise, softwares, billamount);
+                        
+                        System.out.println("\nSuccesfully added data!");
                         break;
 
                         case 2:
-                        System.out.println("\nEnter the CustomerID");
-                            String code;
-                            code = sc.nextLine();
-                                String intValue = code.replaceAll("[^0-9]", "");
-                                try {
-                                    FileInputStream fis = new FileInputStream("D:\\ServicesData\\SerivceRecord.txt");
-                                    AppendableObjectInputStream input = new AppendableObjectInputStream(fis);
-
-                                    ArrayList<service> objectsList = new ArrayList<>();
-                                    boolean co = true;
-                                    try {
-                                        while (co) {
-                                            service obj = ((service) input.readObject());
-                                            if (obj != null) {
-                                                objectsList.add(obj);
-                                            } else {
-                                                co = false;
-
-                                            }
-                                        }
-                                    } catch (Exception g) {
-                                        System.out.println(g);
+                        service use=new service();
+                        System.out.println("\n1.Press 1 to get details of a particular bill\n2.Press 2 to get history of a particular Enterprise customer");
+                        choice8=sc.nextInt();
+                        sc.nextLine();
+                        switch(choice8){
+                        case 1:
+                        System.out.println("\nEnter the Customer ID");
+                        String code;                       
+                        code = sc.nextLine();
+                        if(code.length()>4){System.out.println("\n**The entered id is of invalid format");}
+                        else{
+                        if (code.charAt(0) == 'c' || code.charAt(1) == 'C') {
+                            
+                            use.getBillData(serviceList, code);                          
+                        } 
+                        else System.out.println("\nThe entered id of invalid format");
+                        }
+                        break;
+                            case 2:      
+                                                   
+                                System.out.println("\nEnter enterprise name");
+                                String searchEnterprise=sc.nextLine();
+                                Boolean companyFound=false;
+                                for(int i=0;i<serviceList.size();i++){
+                                    if(serviceList.get(i).Enterprise==searchEnterprise){
+                                        System.out.println("\n"+serviceList.get(i));
+                                        companyFound=true;
                                     }
-                                    input.close();
-                                    System.out.println(objectsList.get(Integer.valueOf(intValue)));
-                                } catch (Exception g) {
-                                    System.out.println(g);
                                 }
-                    
-                    break;
+                                if(companyFound==false){System.out.println("\nThe entered enterprise does not exist in record file");}
+                            break;
+                        }
+
+
                             }
                             break;
                     
@@ -1131,13 +1243,23 @@ FileOutputStream fout = new FileOutputStream("D:\\employeesDataAlternate\\Market
     
       }
 
-
-
-
-
-
+      try {FileOutputStream ffout = new FileOutputStream("D:\\employeesDataAlternate\\CustomerRecord.txt", false);
+    AppendableObjectOutputStream oout = new AppendableObjectOutputStream(ffout);   
+    oout.writeObject(serviceList.get(0));
+    oout.flush();
+    oout.close();
+                                       
+FileOutputStream fout = new FileOutputStream("D:\\employeesDataAlternate\\CustomerRecord.txt", true);
+        AppendableObjectOutputStream out = new AppendableObjectOutputStream(fout);
+    for (int i = 1; i < serviceList.size(); i++) {
+       out.writeObject(serviceList.get(i));
+   }
+    out.flush();
+    out.close();
+     } catch (Exception e) {
+    
+      }
  System.out.println("********Session Ended********");
-
  sc.close();
     }
 }
