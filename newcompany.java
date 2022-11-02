@@ -1121,12 +1121,12 @@ public class company_alternate {
                                 String searchEnterprise=sc.nextLine();
                                 Boolean companyFound=false;
                                 for(int i=0;i<serviceList.size();i++){
-                                    if(serviceList.get(i).Enterprise==searchEnterprise){
+                                    if(serviceList.get(i).Enterprise.equals(searchEnterprise)){
                                         System.out.println("\n"+serviceList.get(i));
                                         companyFound=true;
                                     }
                                 }
-                                if(companyFound==false){System.out.println("\nThe entered enterprise does not exist in record file");}
+                                if(!companyFound){System.out.println("\nThe entered enterprise does not exist in record file");}
                             break;
                         }
 
