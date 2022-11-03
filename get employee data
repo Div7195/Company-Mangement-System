@@ -1,0 +1,23 @@
+ public void getEmployeesData(ArrayList<design> employeeList,String code){
+        try{
+                    String intValue=code.substring(2, 5);                                
+                try{
+                    Integer.valueOf(intValue);     
+                    
+                    if(employeelist.get(intvalue).status==1){
+                    System.out.println(employeeList.get(Integer.valueOf(intValue)));
+                    }
+                    else{
+                        System.out.println("\n*****these employee does not work any more with us******");
+                         System.out.println(employeeList.get(Integer.valueOf(intValue)));
+                    }
+                } 
+                catch(NumberFormatException e){
+                    System.out.println("\n**The entered code is of invalid format");
+                }
+                catch(IndexOutOfBoundsException h){System.out.println("\n**The entered code does not exist");}
+                catch (Exception g) {
+                    System.out.println(g);
+                }
+            }catch(Exception e){System.out.println("\n**The entered code is of invalid format");}
+    }
