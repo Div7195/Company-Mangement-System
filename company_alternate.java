@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 public class company_alternate {
     public static void main(String[] args) {
-             
+            
         ArrayList<design> designList = new ArrayList<>();
         ArrayList<Research> researchList = new ArrayList<>();
         ArrayList<softwareDev> softwareList = new ArrayList<>();
@@ -113,7 +113,7 @@ public class company_alternate {
                                 case 1:
                                for(int i=0;i<designList.size();i++){
                                 if(designList.get(i).status==0){
-                                    System.out.println("\nThis employee does not work anymore");
+                                    System.out.println("\n"+designList.get(i).empcode+"\tdoes not work anymore");
                                     System.out.println(designList.get(i));
                                 }
                                 else{System.out.println(designList.get(i));}
@@ -123,7 +123,7 @@ public class company_alternate {
                                 case 2:
                                 for(int i=0;i<softwareList.size();i++){
                                     if(softwareList.get(i).status==0){
-                                        System.out.println("\nThis employee does not work anymore");
+                                        System.out.println("\n"+softwareList.get(i).empcode+"\tdoes not work anymore");
                                         System.out.println(softwareList.get(i));
                                     }
                                     else{System.out.println(softwareList.get(i));}
@@ -133,7 +133,7 @@ public class company_alternate {
                                 case 3:
                                 for(int i=0;i<researchList.size();i++){
                                     if(researchList.get(i).status==0){
-                                        System.out.println("\nThis employee does not work anymore");
+                                        System.out.println("\n"+researchList.get(i).empcode+"\tdoes not work anymore");
                                         System.out.println(researchList.get(i));
                                     }
                                     else{System.out.println(researchList.get(i));}
@@ -143,7 +143,7 @@ public class company_alternate {
                                 case 4:
                                 for(int i=0;i<hrList.size();i++){
                                     if(hrList.get(i).status==0){
-                                        System.out.println("\nThis employee does not work anymore");
+                                        System.out.println("\n"+hrList.get(i).empcode+"\tdoes not work anymore");
                                         System.out.println(hrList.get(i));
                                     }
                                     else{System.out.println(hrList.get(i));}
@@ -153,7 +153,7 @@ public class company_alternate {
                                 case 5:
                                 for(int i=0;i<productList.size();i++){
                                     if(productList.get(i).status==0){
-                                        System.out.println("\nThis employee does not work anymore");
+                                        System.out.println("\n"+productList.get(i).empcode+"\tdoes not work anymore");
                                         System.out.println(productList.get(i));
                                     }
                                     else{System.out.println(productList.get(i));}
@@ -163,7 +163,7 @@ public class company_alternate {
                                 case 6:
                                 for(int i=0;i<marketingList.size();i++){
                                     if(marketingList.get(i).status==0){
-                                        System.out.println("\nThis employee does not work anymore");
+                                        System.out.println("\n"+marketingList.get(i).empcode+"\tdoes not work anymore");
                                         System.out.println(marketingList.get(i));
                                     }
                                     else{System.out.println(marketingList.get(i));}
