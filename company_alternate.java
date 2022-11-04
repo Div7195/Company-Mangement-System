@@ -1,10 +1,10 @@
-import DepartmentClasses.*;
 import UtilityClasses.*;
+import DepartmentClasses.*;
 import java.util.*;
 import java.io.*;
 public class company_alternate {
     public static void main(String[] args) {
-        int keepAddingEmployee = 1;      
+             
         ArrayList<design> designList = new ArrayList<>();
         ArrayList<Research> researchList = new ArrayList<>();
         ArrayList<softwareDev> softwareList = new ArrayList<>();
@@ -12,147 +12,30 @@ public class company_alternate {
         ArrayList<PdtManagement> productList = new ArrayList<>();
         ArrayList<marketing> marketingList = new ArrayList<>();
         ArrayList<service> serviceList = new ArrayList<>();
-        try{
-            FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\Design_Encoded.txt");
-                AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
-                     boolean co = true;
-                     try {
-                        while (co) {
-                     design obj = ((design) input.readObject());
-                          if (obj != null) {
-                             designList.add(obj);
-                        } else {
-                         co = false;
-
-                      }
-                 }
-                } catch (Exception g) {
-                    System.out.println("\n\n***DATA LOADED!***");
-                }
-             input.close();
-          }catch(Exception e){System.out.println(e);}
-
-          try{
-            FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\SoftwareDev_Encoded.txt");
-                AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
-                     boolean co = true;
-                     try {
-                        while (co) {
-                     softwareDev obj = ((softwareDev) input.readObject());
-                          if (obj != null) {
-                             softwareList.add(obj);
-                        } else {
-                         co = false;
-
-                      }
-                 }
-                } catch (Exception g) {
-            
-                }
-             input.close();
-          }catch(Exception e){System.out.println(e);}
-
-          try{
-            FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\Research_Encoded.txt");
-                AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
-                     boolean co = true;
-                     try {
-                        while (co) {
-                     Research obj = ((Research) input.readObject());
-                          if (obj != null) {
-                             researchList.add(obj);
-                        } else {
-                         co = false;
-
-                      }
-                 }
-                } catch (Exception g) {
-            
-                }
-             input.close();
-          }catch(Exception e){System.out.println(e);}
-
-          try{
-            FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\HR_Encoded.txt");
-                AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
-                     boolean co = true;
-                     try {
-                        while (co) {
-                     HR obj = ((HR) input.readObject());
-                          if (obj != null) {
-                             hrList.add(obj);
-                        } else {
-                         co = false;
-
-                      }
-                 }
-                } catch (Exception g) {
-            
-                }
-             input.close();
-          }catch(Exception e){System.out.println(e);}
-
-          try{
-            FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\ProductManagement_Encoded.txt");
-                AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
-                     boolean co = true;
-                     try {
-                        while (co) {
-                     PdtManagement obj = ((PdtManagement) input.readObject());
-                          if (obj != null) {
-                             productList.add(obj);
-                        } else {
-                         co = false;
-
-                      }
-                 }
-                } catch (Exception g) {
-            
-                }
-             input.close();
-          }catch(Exception e){System.out.println(e);}
-          try{
-            FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\Marketing_Encoded.txt");
-                AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
-                     boolean co = true;
-                     try {
-                        while (co) {
-                     marketing obj = ((marketing) input.readObject());
-                          if (obj != null) {
-                             marketingList.add(obj);
-                        } else {
-                         co = false;
-
-                      }
-                 }
-                } catch (Exception g) {
-            
-                }
-             input.close();
-          }catch(Exception e){System.out.println(e);}
-
-          try{
-            FileInputStream fis = new FileInputStream("D:\\employeesDataAlternate\\CustomerRecord.txt");
-                AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
-                     boolean co = true;
-                     try {
-                        while (co) {
-                     service obj = ((service) input.readObject());
-                          if (obj != null) {
-                             serviceList.add(obj);
-                        } else {
-                         co = false;
-
-                      }
-                 }
-                } catch (Exception g) {
-                }
-             input.close();
-          }catch(Exception e){System.out.println(e);}
+        design get=new design();
+        get.getDataFromFiles("D:\\employeesDataAlternate\\Design_Encoded.txt", designList);
+        
+        softwareDev get1=new softwareDev();
+        get1.getDataFromFiles("D:\\employeesDataAlternate\\SoftwareDev_Encoded.txt", softwareList);
+        
+        Research get2=new Research();
+        get2.getDataFromFiles("D:\\employeesDataAlternate\\Research_Encoded.txt", researchList);
+        
+          HR get3=new HR();
+        get3.getDataFromFiles("D:\\employeesDataAlternate\\HR_Encoded.txt", hrList);
+        
+        PdtManagement get4=new PdtManagement();
+        get4.getDataFromFiles("D:\\employeesDataAlternate\\ProductManagement_Encoded.txt", productList);
+       
+        marketing get5=new marketing();
+        get5.getDataFromFiles("D:\\employeesDataAlternate\\Marketing_Encoded.txt", marketingList);
+        
+        service get6=new service();
+        get6.getDataFromFiles("D:\\employeesDataAlternate\\CustomerRecord.txt", serviceList);
+       
 
        
-                                                                
-                                                                            
+                                                                                                                                            
         System.out.println("********COMPANY MANAEGMENT SYSTEM*******");
         System.out.println("\nPLEASE ENTER YOUR ADMIN ID TO GET ACCESS");
 
@@ -170,13 +53,13 @@ public class company_alternate {
         sc.nextLine();
         while (cont == 1) {
             System.out.println(
-                    "\n1.Press 1 to get details of employees.\n2.Press 2 to modify data of employees.\n3.Press 3 to manage record of customers and services.\n4.Press any other integer key to save changes and exit");
+                    "\n1.Press 1 to access data of employees.\n2.Press 2 to modify data of employees.\n3.Press 3 to manage record of customers.\n4.Press any other integer key to save changes and exit");
             choice2 = sc.nextInt();
             sc.nextLine();
             switch (choice2) {
                 case 1:
                     System.out.println(
-                            "\n1.Press 1 to get details of a specefic employee.\n2.Press 2 to get data of employees of specific department.");
+                            "\n1.Press 1 to get details of a specefic employee.\n2.Press 2 to get data of employees of specific department.\n3.Press 3 to sort employees by name");
                     choice4 = sc.nextInt();
                     sc.nextLine();
                     switch (choice4) {
@@ -228,47 +111,126 @@ public class company_alternate {
 
                             switch (choice3) {
                                 case 1:
-                                System.out.println(designList);
+                               for(int i=0;i<designList.size();i++){
+                                if(designList.get(i).status==0){
+                                    System.out.println("\nThis employee does not work anymore");
+                                    System.out.println(designList.get(i));
+                                }
+                                else{System.out.println(designList.get(i));}
+                               }
+                                    break;
+
+                                case 2:
+                                for(int i=0;i<softwareList.size();i++){
+                                    if(softwareList.get(i).status==0){
+                                        System.out.println("\nThis employee does not work anymore");
+                                        System.out.println(softwareList.get(i));
+                                    }
+                                    else{System.out.println(softwareList.get(i));}
+                                   }
+                                    break;
+
+                                case 3:
+                                for(int i=0;i<researchList.size();i++){
+                                    if(researchList.get(i).status==0){
+                                        System.out.println("\nThis employee does not work anymore");
+                                        System.out.println(researchList.get(i));
+                                    }
+                                    else{System.out.println(researchList.get(i));}
+                                   }
+                                    break;
+
+                                case 4:
+                                for(int i=0;i<hrList.size();i++){
+                                    if(hrList.get(i).status==0){
+                                        System.out.println("\nThis employee does not work anymore");
+                                        System.out.println(hrList.get(i));
+                                    }
+                                    else{System.out.println(hrList.get(i));}
+                                   }
+                                    break;
+
+                                case 5:
+                                for(int i=0;i<productList.size();i++){
+                                    if(productList.get(i).status==0){
+                                        System.out.println("\nThis employee does not work anymore");
+                                        System.out.println(productList.get(i));
+                                    }
+                                    else{System.out.println(productList.get(i));}
+                                   }
+                                   break;
+
+                                case 6:
+                                for(int i=0;i<marketingList.size();i++){
+                                    if(marketingList.get(i).status==0){
+                                        System.out.println("\nThis employee does not work anymore");
+                                        System.out.println(marketingList.get(i));
+                                    }
+                                    else{System.out.println(marketingList.get(i));}
+                                   }
+                                    break;
+
+                            }
+                            break;
+
+                            case 3:
+                            System.out.println(
+                                    "\n1.Press 1 to sort Design Team.\n2.Press 2 to sort Software Developers Tean.\n3.Press 3 to sort Reaserch Team.\n4.Press 4 to sort HR Team.\n5.Press 5 to sort Product Team.\n6.Press 6 to sort Marketing Team");
+                            choice3 = sc.nextInt();
+                            sc.nextLine();
+
+
+                            switch (choice3) {
+                                case 1:
+                                design sort1=new design();
+                                sort1.sort1EmployeesData(designList);
 
                                     break;
 
                                 case 2:
-                                    System.out.println(softwareList);
+                                softwareDev sort2=new softwareDev();
+                                sort2.sort1EmployeesData(softwareList);
 
                                     break;
 
                                 case 3:
-                                    System.out.println(researchList);
+                                Research sort3=new Research();
+                                sort3.sort1EmployeesData(researchList);
 
                                     break;
 
                                 case 4:
-                                    System.out.println(hrList);
-
+                                HR sort4=new HR();
+                                sort4.sort1EmployeesData(hrList);
                                     break;
 
                                 case 5:
-                                    System.out.println(productList);
+                                PdtManagement sort5=new PdtManagement();
+                                sort5.sort1EmployeesData(productList);
 
                                     break;
 
                                 case 6:
-                                    System.out.println(marketingList);
+                                marketing sort6=new marketing();
+                                sort6.sort1EmployeesData(marketingList);
 
                                     break;
 
                             }
+
                             break;
                     }
                     break;
 
                 case 2:
+                    
                     System.out.println(
-                            "\n1.Press 1 to add a new employee to database.\n2.Press 2 to modify data of existing employees.");
+                            "\n1.Press 1 to add a new employee to database.\n2.Press 2 to modify data of existing employees.\n3.Press 3 to remove data of an employee");
                     choice3 = sc.nextInt();
                     sc.nextLine();
                     switch (choice3) {
                         case 1:
+                        int keepAddingEmployee = 1; 
                             while (keepAddingEmployee == 1) {
                                 System.out.println("\n1.Tech.\n2.Non Tech");
 
@@ -572,7 +534,51 @@ public class company_alternate {
                                 System.out.println(g);
                             }}catch(Exception g){System.out.println("\n**The entered code is in invalid format");}                            
                         }
+                        
                     }
+                    break;
+                    case 3:
+                    System.out.println("\nEnter the employee code which you want to remove");
+                                                    
+                                                 String removeCode;
+                                                 removeCode = sc.nextLine();
+                                                if(removeCode.length()>5){System.out.println("\n**The entered code is of invalid format");}
+                                                else{
+                                                if (removeCode.charAt(1) == 'D' || removeCode.charAt(1) == 'd') {
+                                                       
+                                                design use12=new design();
+                                                use12.removeEmployeesData(designList,removeCode);
+                               
+                                                 } 
+                                                    else if (removeCode.charAt(1) == 'S' || removeCode.charAt(1) == 's') {
+                                                 softwareDev use12=new softwareDev();
+                                                use12.removeEmployeesData(softwareList,removeCode);
+                                
+                                 }
+                                                else if (removeCode.charAt(1) == 'R' || removeCode.charAt(1) == 'r') {
+                                                 Research use=new Research();
+                                                 use.removeEmployeesData(researchList,removeCode);
+                               
+                                     } 
+                                     else if (removeCode.charAt(1) == 'H' || removeCode.charAt(1) == 'h') {
+                                                HR use=new HR();
+                                                use.removeEmployeesData(hrList,removeCode);
+                                
+                                    } else if (removeCode.charAt(1) == 'P' || removeCode.charAt(1) == 'p') {
+                                                PdtManagement use=new PdtManagement();
+                                                use.removeEmployeesData(productList,removeCode);
+                                
+                                    } else if (removeCode.charAt(1) == 'M' || removeCode.charAt(1) == 'm') {
+                                                marketing use=new marketing();
+                                                use.removeEmployeesData(marketingList,removeCode);
+                               
+                                        }
+                                else System.out.println("\n**The entered code is in invalid format");
+                    }
+                                                        
+
+                                        
+                    break;
                 }                    
                     break;
                     case 3:
@@ -674,8 +680,8 @@ public class company_alternate {
                     
                     default:
                     cont=0;
-
-
+                    break;
+                    
             }
         }
         
