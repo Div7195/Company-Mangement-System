@@ -1,9 +1,10 @@
 package DepartmentClasses;
 import java.util.*;
+import UtilityClasses.*;
 import java.io.*;
-public class service  implements Serializable{
+public class service implements Serializable{
     String customerID;
-    String Enterprise;
+    public String Enterprise;
     String softwaresPurchased;
     int billAmount;
     public service(){};
@@ -37,5 +38,27 @@ public class service  implements Serializable{
         service newSericeBill = new service(cid, Enterprise, softwarsPurchased, billAmount);
         serviceList.add(newSericeBill);
 }
+public void getDataFromFiles(String filename,ArrayList<service> employeeList){
+    try{
+        FileInputStream fis = new FileInputStream(filename);
+            AppendableObjectInputStream input = new AppendableObjectInputStream(fis);                                  
+                 boolean co = true;
+                 try {
+                    while (co) {
+                 service obj = ((service) input.readObject());
+                      if (obj != null) {
+                         employeeList.add(obj);
+                    } else {
+                     co = false;
     
+                  }
+             }
+            } catch (Exception g) {
+                
+            }
+         input.close();
+      }catch(Exception e){System.out.println(e);}
+    
+    
+}
 }
