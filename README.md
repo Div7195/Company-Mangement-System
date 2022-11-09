@@ -1,4 +1,4 @@
-# Employees' And Customer Data Management in JAVA
+# Company Management System in JAVA
 The Project was developed to update and add to the personnel data of a corporation for the 
 ADMIN side. The Project also attempts to preserve the data and records of the softwares that the 
 clients have acquired.
