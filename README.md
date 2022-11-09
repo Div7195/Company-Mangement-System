@@ -1,4 +1,4 @@
-# Comapany-Management-System
+# Employees' And Customer Data Management in JAVA
 The Project was developed to update and add to the personnel data of a corporation for the 
 ADMIN side. The Project also attempts to preserve the data and records of the softwares that the 
 clients have acquired.
@@ -10,6 +10,7 @@ employee code, customer ID. Additionally, fresh material can be inserted into al
 files and can be modified and saved appropriately.
 The program handles many kinds of potential exceptions. The information entered into the file is 
 encrypted so that it cannot be read by a third party and stays encrypted.
+
 METHODOLOGY:
 Concepts used in the Java program include:
 1. Inheritance
